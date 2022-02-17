@@ -3,3 +3,19 @@ main {
     margin-left: 100px;
     margin-right: 100px;
 }
+
+.accountBox {
+    border-style: solid;
+    border-width: thin;
+    border-color: lightgray;
+    border-radius: 10px;
+    width: 35%;
+    background-color: white;
+    text-align: center;
+    margin-top: 20px;
+    padding-bottom: 20px;
+    display: inline-block;
+    vertical-align: top;
+    margin: 10px;
+    margin-left: 0;
+}

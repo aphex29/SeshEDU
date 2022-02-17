@@ -9,9 +9,13 @@ function Home() {
         <main>
                 <h2>Home</h2>
                 
+                <div className='accountBox'>
                 <NewAccountFormContainer />
+                </div>
 
+                <div className='accountBox'>
                 <LoginFormContainer />
+                </div>
         </main>
     );
 }
