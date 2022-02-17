@@ -28,7 +28,7 @@ public class BackendApplication {
 	}
 
 	@Bean
-	CommandLineRunner commandLineRunner(PersonRepository pRepo) {
+	CommandLineRunner commandLineRunner(PersonRepository pRepo,  EducationRepository educationRepo) {
 		return args -> {
 			PersonService ps = new PersonService(pRepo);
 			ps.createPerson("pmarkows","Patrick Markowski", "pm@depaul.edu", "1234", "Chicago", "Illinois");
@@ -74,7 +74,7 @@ public class BackendApplication {
 			else System.out.println("Account not verified");
 		*/
 
-			/*
+
 			Education ed1 = new Education(2L, "DePaul University", "Bachelor of Science", "Computer Science", 2018, 2022);
 			Education ed2 = new Education(2L, "DePaul University", "Master", "Computer Science", 2022, 2024);
 			educationRepo.save(ed1);
@@ -104,7 +104,6 @@ public class BackendApplication {
 //
 //			int edDatabaseSize = educationRepo.findAll().size();
 //			System.out.println("education database size " + edDatabaseSize); // 2
-
 		};
 	}
 }
