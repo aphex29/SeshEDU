@@ -1,1 +1,16 @@
-/* */
+button {
+    padding: 15px;
+    background-color: #282828;
+    color: #ffffff;
+    -webkit-appearance: none;
+    border: none;
+    font-size: 1em;
+    font-weight: bold;
+    border-radius: 5px;;
+
+}
+
+button:hover {
+    background-color: #1390d8;
+    transition-duration: 0.3s;
+}
