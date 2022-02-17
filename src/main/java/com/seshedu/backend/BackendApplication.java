@@ -78,22 +78,18 @@ public class BackendApplication {
 			Education ed1 = new Education(2L, "DePaul University", "Bachelor of Science", "Computer Science", 2018, 2022);
 			Education ed2 = new Education(2L, "DePaul University", "Master", "Computer Science", 2022, 2024);
 			educationRepo.save(ed1);
-
 			Education result = educationRepo.findById(1L).orElseThrow(() -> new EntityNotFoundException("" + 1L));
 			System.out.println(result);
-
 			Education result2 = educationRepo.findById(1L).orElseThrow(() -> new EntityNotFoundException("" + 1L));
 			result2.setSchool("Loyola University");
 			educationRepo.save(result2);
-
+			educationRepo.save(ed2);
 			List<Education> result3 = educationRepo.findByUserId(2L).orElseThrow(() -> new EntityNotFoundException("" + 2L));
-*/
 
-
+			System.out.println(result3);
 
 //			educationRepo.save(ed2);
 //
-
 //			List<Education> result2 = educationRepo.findByUserId(2L).orElseThrow(() -> new EntityNotFoundException("" + 2L));
 //			System.out.println("result: " + result);
 //			System.out.println("result.school: " + result.getSchool());
@@ -108,9 +104,6 @@ public class BackendApplication {
 //
 //			int edDatabaseSize = educationRepo.findAll().size();
 //			System.out.println("education database size " + edDatabaseSize); // 2
-
-
-
 
 		};
 	}
