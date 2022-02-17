@@ -76,6 +76,7 @@ public class Person implements User {
         this.state = state;
     }
 
+    public Long getId() { return id; }
     public String getUsername() { return username; }
     public String getName() { return name; }
     public String getEmail() { return email; }
