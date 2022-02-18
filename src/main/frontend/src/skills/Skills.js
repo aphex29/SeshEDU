@@ -16,8 +16,8 @@ function Skills(props) {
 
     return (
         <div>
-            <h3>Skills</h3>
-            <ul>
+            <h2>Skills</h2>
+            <ul id="skillsList">
                 {getSkillsHTML(props.skills)}
             </ul>
 
