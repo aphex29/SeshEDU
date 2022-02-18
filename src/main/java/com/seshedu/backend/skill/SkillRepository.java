@@ -1,6 +1,7 @@
-package com.seshedu.backend.session;
+package com.seshedu.backend.skill;
 
-import com.seshedu.backend.education.Education;
+import com.seshedu.backend.hobby.Hobby;
+import com.seshedu.backend.skill.Skill;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -8,9 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface SessionRepository extends JpaRepository<Session, Long> {
+public interface SkillRepository extends JpaRepository<Skill, Long> {
 
-
-    Optional<List<Session>> findByUserId(Long userId);
+    Optional<List<Skill>> findByUserId(Long userId);//look at education repo - your list is already here
 }
-
