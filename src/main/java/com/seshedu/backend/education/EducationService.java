@@ -1,8 +1,10 @@
 package com.seshedu.backend.education;
 
+import com.seshedu.backend.hobby.Hobby;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @Service
@@ -16,34 +18,46 @@ public class EducationService {
 
     public Education createEducation(Long userId, String school, String degreeType,
                                     String major, Integer startYear, Integer endYear) {
-        return null;
+
+        Education newEducation = new Education(userId, school, degreeType, major, startYear, endYear );
+        return educationRepo.save(newEducation);
     }
 
     public List<Education> getAllEducation(Long userId) {
-        return null;
+
+        List<Education> educations = educationRepo.findByUserId(userId).orElseThrow(()-> new EntityNotFoundException(""+ userId));
+        return educations;
     }
 
     public Education updateSchool(Long educationId, String newSchool) {
-        return null;
+        Education newEducation = educationRepo.findById(educationId).orElseThrow(()-> new EntityNotFoundException(""+ educationId));
+        return educationRepo.save(newEducation);//---use this for updating
     }
 
     public Education updateDegreeType(Long educationId, String newDegree) {
-        return null;
+
+        Education newEducation = educationRepo.findById(educationId).orElseThrow(()-> new EntityNotFoundException(""+ educationId));
+        return educationRepo.save(newEducation);//---use this for updating
     }
 
     public Education updateMajor(Long educationId, String newMajor) {
-        return null;
+        Education newEducation = educationRepo.findById(educationId).orElseThrow(()-> new EntityNotFoundException(""+ educationId));
+        return educationRepo.save(newEducation);//---use this for updating
     }
 
     public Education updateStartYear(Long educationId, String newStartYear) {
-        return null;
+        Education newEducation = educationRepo.findById(educationId).orElseThrow(()-> new EntityNotFoundException(""+ educationId));
+        return educationRepo.save(newEducation);//---use this for updating
     }
 
     public Education updateEndYear(Long educationId, String newEndYear) {
-        return null;
+        Education newEducation = educationRepo.findById(educationId).orElseThrow(()-> new EntityNotFoundException(""+ educationId));
+        return educationRepo.save(newEducation);//---use this for updating
     }
 
     public void deleteEducation(Long educationId) {
 
+        Hobby oldEducation = educationRepo.findById(educationId).orElseThrow(()-> new EntityNotFoundException(""+ educationId))   ;
+        educationRepo.delete(oldEducation);
     }
 }
