@@ -8,8 +8,6 @@ function LoginFormContainer() {
 
     return (
         <div>
-            <h2>Log In</h2>
-
             <LoginForm />
         </div>
     );

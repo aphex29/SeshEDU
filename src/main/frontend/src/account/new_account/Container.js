@@ -7,7 +7,6 @@ function NewAccountFormContainer() {
 
     return (
         <div>
-            <h2 id="createAccountHeader">Create Account</h2>
 
             <NewAccountForm />
 

@@ -1,12 +1,10 @@
 import React from 'react';
-import './UserProfile.css';
 import ProfileHeaderContainer from '../header/Container';
 import EducationContainer from '../education/Container';
 import SkillsContainer from '../skills/Container';
 import HobbiesContainer from '../hobbies/Container';
 import AvailabilityContainer from '../availability/Container';
 import SessionsContainer from '../sessions/Container';
-import Button from '../button/Button';
 
 function UserProfile() {
     return(
@@ -15,31 +13,15 @@ function UserProfile() {
 
             <ProfileHeaderContainer />
 
-            <div className="box">
-                <EducationContainer />
-            </div>
-            
-            <div className="box">
-                <SkillsContainer />
+            <EducationContainer />
 
-                <HobbiesContainer />
-            </div>
-            
-            <div className="box">
-                <AvailabilityContainer />
-            </div>
+            <SkillsContainer />
 
-            <div id="sessionButtons">
-                <Button type="submit" value="Study Session" />
+            <HobbiesContainer />
 
-                <Button type="submit" value="Hangout Session" />
+            <AvailabilityContainer />
 
-                <Button type="submit" value="Tutor Session" />
-            </div>
-
-            <div className="box">
-                <SessionsContainer />
-            </div>
+            <SessionsContainer />
         </main>
     );
 }
