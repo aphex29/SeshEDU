@@ -1,9 +1,37 @@
 package com.seshedu.backend.skill;
 
-import com.seshedu.backend.skill.Skill;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import com.seshedu.backend.hobby.Hobby;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-@Repository
-public interface SkillRepository extends JpaRepository<Skill, Long> {
+import javax.persistence.EntityNotFoundException;
+import java.util.List;
+
+@Service
+public class SkillService {
+    SkillRepository skillRepo;
+
+    @Autowired
+    public SkillService(SkillRepository skillRepo) {
+        this.skillRepo = skillRepo;
+
+    }
+
+    public Skill addSkill(Long userId, String skill) {
+        Skill newSkill = new Skill(userId, skill);
+        return skillRepo.save(newSkill);
+    }
+
+    public List<Skill> getSkills(Long userId) {
+
+        List<Skill> skills = skillRepo.findByUserId(userId).orElseThrow(()-> new EntityNotFoundException(""+ userId));
+
+        }
+
+    void deleteSkill(String skillId) {
+
+        Skill oldSkill = skillRepo.findById(skillId).orElseThrow(()-> new EntityNotFoundException(""+ skillId));
+        skillRepo.delete(oldSkill);
+
+    }
 }
