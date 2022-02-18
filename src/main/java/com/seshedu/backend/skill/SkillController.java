@@ -1,36 +1,37 @@
 package com.seshedu.backend.skill;
 
+import com.seshedu.backend.hobby.Hobby;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
-import java.util.Map;
 
-@Controller
-@CrossOrigin(origins = "http://localhost:3000")
-public class SkillController {
-    SkillService service;
+@Service
+public class SkillService {
+    SkillRepository skillRepo;
 
     @Autowired
-    public SkillController(SkillService service) {
-        this.service = service;
+    public SkillService(SkillRepository skillRepo) {
+        this.skillRepo = skillRepo;
+
     }
 
-    @PostMapping("/api/v1/create/skill")
-    public Skill addSkill(@RequestBody Map<String, String> json) {
-        return null;
+    public Skill addSkill(Long userId, String skill) {
+        Skill newSkill = new Skill(userId, skill);
+        return skillRepo.save(newSkill);
     }
 
-    @PostMapping("/api/v1/get/skill/all")
-    public List<Skill> getSkill(@RequestBody Map<String, String> json) {
-        return null;
-    }
+    public List<Skill> getSkills(Long userId) {
 
-    @PostMapping("/api/v1/delete/skill")
-    public void deleteSkill(@RequestBody Map<String, String> json) {
+        List<Skill> skills = skillRepo.findByUserId(userId).orElseThrow(()-> new EntityNotFoundException(""+ userId));
+
+        }
+
+    void deleteSkill(String skillId) {
+
+        Skill oldSkill = skillRepo.findById(skillId).orElseThrow(()-> new EntityNotFoundException(""+ skillId));
+        skillRepo.delete(oldSkill);
 
     }
 }
