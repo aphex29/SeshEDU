@@ -117,7 +117,7 @@ public class Education {
         startYear = newYear;
     }
 
-    public void setEndYear(Integer newYear) {
+    public void getEndYear(Integer newYear) {
         endYear = newYear;
     }
 
