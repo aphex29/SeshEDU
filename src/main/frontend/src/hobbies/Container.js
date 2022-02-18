@@ -1,16 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Hobbies from './Hobbies';
 import axios from 'axios';
 
 function HobbiesContainer() {
-    // Add logic for objects, handling form, and axios communication w/ backend
-
-
-    return (
-        <div>
-            <Hobbies />
-        </div>
+    const [hobbies, setHobbies] = useState({});
+  
+    useEffect(() => {
+      // will use axios here to grab data from backend
+      const getHobbies = () => {
+        let hobbies = {
+          5: {id: 5, userId: 2, hobby: "hiking"},
+          8: {id: 8, userId: 2, hobby: "cycling"}
+        };
+        setHobbies(hobbies);
+      }
+  
+      getHobbies();
+    }, [])
+  
+    return(
+      <div>
+        <Hobbies hobbies={hobbies} />
+      </div>
     );
-}
-
-export default HobbiesContainer;
+  }
+  
+  export default HobbiesContainer;
