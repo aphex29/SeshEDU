@@ -25,10 +25,11 @@ public class SkillService {
     public List<Skill> getSkills(Long userId) {
 
         List<Skill> skills = skillRepo.findByUserId(userId).orElseThrow(()-> new EntityNotFoundException(""+ userId));
+        return skills;
 
         }
 
-    void deleteSkill(String skillId) {
+    void deleteSkill(Long skillId) {
 
         Skill oldSkill = skillRepo.findById(skillId).orElseThrow(()-> new EntityNotFoundException(""+ skillId));
         skillRepo.delete(oldSkill);
