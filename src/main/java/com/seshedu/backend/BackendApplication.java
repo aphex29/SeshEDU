@@ -60,7 +60,6 @@ public class BackendApplication {
 			userRepo.save(ua1);
 			userRepo.save(ua2);
 			userRepo.save(ua3);
-
 			UserAccount up1 = userRepo.findByUserId(2L)
 					.orElseThrow(() -> new EntityNotFoundException("" + 2L));
 			up1.setPassword("abcdefh");
@@ -69,7 +68,6 @@ public class BackendApplication {
 			UserAccountService uas = new UserAccountService(userRepo);
 			uas.deleteAccount(1L);
 			uas.updatePassword(2L, "query");
-
 			if (uas.verifyAccount(3L, "a@depaul.edu", "query")) System.out.println("Account verified");
 			else System.out.println("Account not verified");
 		*/

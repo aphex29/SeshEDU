@@ -57,7 +57,7 @@ public class EducationService {
 
     public void deleteEducation(Long educationId) {
 
-        Hobby oldEducation = educationRepo.findById(educationId).orElseThrow(()-> new EntityNotFoundException(""+ educationId))   ;
+        Education oldEducation = educationRepo.findById(educationId).orElseThrow(()-> new EntityNotFoundException(""+ educationId))   ;
         educationRepo.delete(oldEducation);
     }
 }

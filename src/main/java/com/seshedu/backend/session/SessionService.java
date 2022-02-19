@@ -19,23 +19,24 @@ public class SessionService {
         this.sessionRepo = sessionRepo;
     }
 
-    @PostMapping("/api/v1/create/session")
+
     public Session createSession(Long userId, String sessionType, Long groupId, String status,
                                Date date, Float startTime, Float endTime) {
 
-        Session newSession = new Session(userId, sessionType, groupId, status, date, startTime, endTime)
-                return sessionRepo.save(newSession);
+        Session newSession = new Session(userId, sessionType, groupId, status, date, startTime, endTime);
+        //return sessionRepo.save(newSession);
+        return null;
     }
 
-    @PostMapping("/api/v1/get/session/all")
-    public List<Session> getSessions(@RequestBody Map<String, String> json) {
+
+    public List<Session> getSessions() {
 //confused by this one and the next
-        List<Session> sessions = sessionRepo.findByUserId(userId).orElseThrow(()-> new EntityNotFoundException(""+ userId));
-        return sessions;
+        //List<Session> sessions = sessionRepo.findByUserId(userId).orElseThrow(()-> new EntityNotFoundException(""+ userId));
+        return null;
 
     }
 
-    @PostMapping("/api/v1/delete/session")
+
     public void deleteSession(@RequestBody Map<String, String> json) {
 
     }

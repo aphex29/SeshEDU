@@ -20,21 +20,31 @@ public class UserAccountController {
 
     @PostMapping("/api/v1/create/account")
     public UserAccount createAccount(@RequestBody Map<String, String> json) {
-        return null;
+        Long userId = Long.parseLong(json.get("userId"));
+        String email = json.get("email");
+        String username = json.get("username");
+        String password = json.get("password");
+        return service.createAccount(userId,email,username,password);
     }
 
     @PostMapping("/api/v1/get/account/verify")
     public Boolean verifyAccount(@RequestBody Map<String, String> json) {
-        return null;
+        Long userId = Long.parseLong(json.get("userId"));
+        String email = json.get("email");
+        String password = json.get("password");
+        return service.verifyAccount(userId,email,password);
     }
 
     @PostMapping("/api/v1/update/account/password")
     public void updatePassword(@RequestBody Map<String, String> json) {
-
+        Long accountId = Long.parseLong(json.get("accountId"));
+        String password = json.get("password");
+        service.updatePassword(accountId,password);
     }
 
     @PostMapping("/api/v1/delete/account")
     public void deleteAccount(@RequestBody Map<String, String> json) {
-
+        Long accountId = Long.parseLong(json.get("accountId"));
+        service.deleteAccount(accountId);
     }
 }

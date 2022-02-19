@@ -1,5 +1,6 @@
 package com.seshedu.backend.availability;
 
+import java.time.LocalDate;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -35,7 +36,7 @@ public class Availability {
             name = "date",
             nullable = false
     )
-    private Date date;
+    private LocalDate date;
 
     @Column(
             name = "start_time",
@@ -51,7 +52,7 @@ public class Availability {
 
     public Availability() {}
 
-    public Availability(Long userId, Date date, Float startTime, Float endTime) {
+    public Availability(Long userId, LocalDate date, Float startTime, Float endTime) {
         this.userId = userId;
         this.date = date;
         this.startTime = startTime;
@@ -70,11 +71,11 @@ public class Availability {
         this.userId = userId;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
