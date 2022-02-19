@@ -1,87 +1,80 @@
 package com.seshedu.backend.user.person;
 
+import com.seshedu.backend.account.UserAccount;
+import com.seshedu.backend.hobby.Hobby;
+import com.seshedu.backend.hobby.HobbyRepository;
+import com.seshedu.backend.skill.Skill;
+import com.seshedu.backend.skill.SkillRepository;
 import com.seshedu.backend.user.User;
+import java.util.function.Predicate;
+import javax.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
 
-@Controller
-@CrossOrigin(origins = "http://localhost:3000")
-public class PersonController {
-    private PersonService service;
+@Service
+public class PersonService {
+    PersonRepository personRepo;
 
     @Autowired
-    public PersonController(PersonService service) {
-        this.service = service;
+    public PersonService(PersonRepository personRepo) {
+        this.personRepo = personRepo;
     }
 
-    @PostMapping("/api/v1/create/person")
-    public Person createPerson(@RequestBody Map<String, String> json) {
-        String username = json.get("username");
-        String name = json.get("name");
-        String email = json.get("email");
-        String password = json.get("password");
-        String city = json.get("city");
-        String state = json.get("state");
-        return service.createPerson(username,name,email,password,city,state);
+    public Person createPerson(String username, String name, String email, String password, String city, String state) {
+        Person person = new Person(username, name, email, password, city, state);
+        return personRepo.save(person);
     }
 
-    @PostMapping("/api/v1/get/person")
-    public Person getPerson(@RequestBody Map<String, String> json) {
-        String username = json.get("username");
-        return service.getPerson(username);
+    public Person getPerson(String username) {
+        return personRepo.findByUsername(username)
+            .orElseThrow(() -> new EntityNotFoundException("" + username));
     }
 
-    @PostMapping("/api/v1/get/nearby-people")
-    public List<Person> getNearbyPeople(@RequestBody Map<String, String> json) {
-        String username = json.get("username");
-        String city = json.get("city");
-        return service.getNearbyPeople(username,city);
+    public List<Person> getNearbyPeople(String username, String city) {
+        return personRepo.findByCityAndUsernameNot(city, username).orElseThrow(() -> new EntityNotFoundException("" + username));
     }
 
-    @PostMapping("/api/v1/update/person/name")
-    public Person updateName(@RequestBody Map<String, String> json) {
-        String username = json.get("username");
-        String newName = json.get("newName");
-        return service.updateName(username,newName);
+    public Person updateName(String username, String newName) {
+        Person userUpdateName = personRepo.findByUsername(username)
+            .orElseThrow(() -> new EntityNotFoundException("" + username));
+        userUpdateName.setName(newName);
+        return personRepo.save(userUpdateName);
     }
 
-    @PostMapping("/api/v1/update/person/username")
-    public Person updateUsername(@RequestBody Map<String, String> json) {
-        String username = json.get("username");
-        String newUserName = json.get("newUserName");
-        return service.updateUsername(username,newUserName);
+    public Person updateUsername(String username, String newUserName) {
+        Person userUpdateUsername = personRepo.findByUsername(username)
+            .orElseThrow(() -> new EntityNotFoundException("" + username));
+        userUpdateUsername.setUsername(newUserName);
+        return personRepo.save(userUpdateUsername);
     }
 
-    @PostMapping("/api/v1/update/person/email")
-    public Person updateEmail(@RequestBody Map<String, String> json) {
-        String username = json.get("username");
-        String newEmail = json.get("newEmail");
-        return service.updateEmail(username,newEmail);
+    public Person updateEmail(String username, String newEmail) {
+
+        Person userUpdateEmail = personRepo.findByUsername(username)
+            .orElseThrow(() -> new EntityNotFoundException("" + username));
+        userUpdateEmail.setEmail(newEmail);
+        return personRepo.save(userUpdateEmail);
     }
 
-    @PostMapping("/api/v1/update/person/city")
-    public Person updateCity(@RequestBody Map<String, String> json) {
-        String username = json.get("username");
-        String newCity = json.get("newCity");
-        return service.updateCity(username,newCity);
+    public Person updateCity(String username, String newCity) {
+        Person userUpdateCity = personRepo.findByUsername(username)
+            .orElseThrow(() -> new EntityNotFoundException("" + username));
+        userUpdateCity.setCity(newCity);
+        return personRepo.save(userUpdateCity);
     }
 
-    @PostMapping("/api/v1/update/person/state")
-    public Person updateState(@RequestBody Map<String, String> json) {
-        String username = json.get("username");
-        String newState = json.get("newState");
-        return service.updateState(username,newState);
+    public Person updateState(String username, String newState) {
+        Person userUpdateState = personRepo.findByUsername(username)
+            .orElseThrow(() -> new EntityNotFoundException("" + username));
+        userUpdateState.setState(newState);
+        return personRepo.save(userUpdateState);
     }
 
-    @PostMapping("/api/v1/delete/person")
-    public void deletePerson(@RequestBody Map<String, String> json) {
-        Long id = Long.parseLong(json.get("id"));
-        service.deletePerson(id);
+    public void deletePerson(Long id) {
+        Person delUserAccount = personRepo.findById(id)
+            .orElseThrow(() -> new EntityNotFoundException("" + id));
+        personRepo.delete(delUserAccount);
     }
 }

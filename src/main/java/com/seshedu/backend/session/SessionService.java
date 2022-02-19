@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -19,26 +18,19 @@ public class SessionService {
         this.sessionRepo = sessionRepo;
     }
 
-
+    @PostMapping("/api/v1/create/session")
     public Session createSession(Long userId, String sessionType, Long groupId, String status,
-        Date date, Float startTime, Float endTime) {
-
-        Session newSession = new Session(userId, sessionType, groupId, status, date, startTime, endTime);
-        //return sessionRepo.save(newSession);
+                               Date date, Float startTime, Float endTime) {
         return null;
     }
 
-
-    public List<Session> getSessions(Long userId) {
-//confused by this one and the next
-        List<Session> sessions = sessionRepo.findByUserId(userId).orElseThrow(()-> new EntityNotFoundException(""+ userId));
+    @PostMapping("/api/v1/get/session/all")
+    public List<Session> getSessions(@RequestBody Map<String, String> json) {
         return null;
-
     }
 
-
-    public void deleteSession(Long sessionId) {
-        Session oldSession = sessionRepo.findById(sessionId).orElseThrow(()-> new EntityNotFoundException(""+ sessionId))   ;
+    @PostMapping("/api/v1/delete/session")
+    public void deleteSession(@RequestBody Map<String, String> json) {
 
     }
 }

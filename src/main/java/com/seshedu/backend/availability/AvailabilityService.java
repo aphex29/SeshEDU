@@ -2,7 +2,6 @@ package com.seshedu.backend.availability;
 
 import com.seshedu.backend.session.Session;
 import com.seshedu.backend.user.User;
-import java.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +18,7 @@ public class AvailabilityService {
         this.availRepo = availRepo;
     }
 
-    public Availability createAvailability(Long userId, LocalDate date, Float StartTime, Float endTime) {
+    public Availability createAvailability(Long userId, Date date, Float StartTime, Float endTime) {
         return null;
     }
 

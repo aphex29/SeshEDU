@@ -21,20 +21,15 @@ public class CourseController {
 
     @PostMapping("/api/v1/create/course")
     public Course addCourse(@RequestBody Map<String, String> json) {
-        Long classId = Long.parseLong(json.get("classId"));
-        String newCourse = json.get("newCourse");
-        return service.addCourse(classId,newCourse);
+        return null;
     }
 
     @PostMapping("/api/v1/get/course/all")
     public List<Course> getCourses(@RequestBody Map<String, String> json) {
-        Long classId = Long.parseLong(json.get("classId"));
-        return service.getCourses(classId);
+        return null;
     }
 
     @PostMapping("/api/v1/delete/course")
     public void deleteCourse(@RequestBody Map<String, String> json) {
-        Long courseId = Long.parseLong(json.get("courseId"));
-        service.deleteCourse(courseId);
     }
 }

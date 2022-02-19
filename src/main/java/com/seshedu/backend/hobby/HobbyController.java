@@ -19,20 +19,16 @@ public class HobbyController {
 
     @PostMapping("/ap1/v1/create/hobby")
     public Hobby addHobby(@RequestBody Map<String, String> json) {
-        Long userId = Long.parseLong(json.get("userId"));
-        String hobby = json.get("hobby");
-        return service.addHobby(userId,hobby);
+        return null;
     }
 
     @PostMapping("/ap1/v1/get/hobby/all")
     public List<Hobby> getHobbies(@RequestBody Map<String, String> json) {
-        Long userId = Long.parseLong(json.get("userId"));
-        return service.getHobbies(userId);
+        return null;
     }
 
     @PostMapping("/api/v1/delete/hobby")
     public void deleteHobby(@RequestBody Map<String, String> json) {
-        Long hobbyId = Long.parseLong(json.get("hobbyId"));
-        service.deleteHobby(hobbyId);
+
     }
 }
