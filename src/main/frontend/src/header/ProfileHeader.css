@@ -1,1 +1,22 @@
-/* */
+#profileDetails {
+    text-align: center;
+    background-color: white;
+    border-radius: 10px;
+    padding-bottom: 20px;
+}
+
+#backgroundPic {
+    width: 100%;
+}
+
+#profilePic {
+    margin-top: 20px;
+}
+
+#name {
+    font-size: 2em;
+}
+
+#username {
+    color: #1390d8;
+}
