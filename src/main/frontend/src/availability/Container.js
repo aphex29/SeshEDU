@@ -63,6 +63,7 @@ function AvailabilityContainer(props) {
     params: id
     */
     const deletAvailability = async(e) => {
+
     }
 
     /* /api/v1/get/available-matches
