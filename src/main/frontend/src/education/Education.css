@@ -1,1 +1,23 @@
-/* */
+.education-details {
+    margin-left: 20px;
+}
+
+#educaiton-new-popup {
+    margin-left: 20px;
+}
+
+.school-logo {
+    width: 50px;
+    margin-bottom: 10px;
+}
+
+.school-years {
+    color: rgba(128, 128, 128, 0.884);
+}
+
+hr {
+    height: 2px;
+    background-color: rgb(231, 227, 227);
+    border: none;
+    
+}

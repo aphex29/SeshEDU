@@ -31,7 +31,8 @@ function AvailabilityContainer(props) {
 
     params: userId, date, startTime, endTime
     */
-    const createAvailability = async (newAvailability) => {
+    const createAvailability = async (e, newAvailability) => {
+        e.preventdefault();
         let response = await axios.post('http://localhost:8080/api/v1/create/availability', newAvailability)
             .catch(error => console.log(error));
         let availResponse = response.data;
