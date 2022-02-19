@@ -31,19 +31,12 @@ function AvailabilityContainer(props) {
 
     params: userId, date, startTime, endTime
     */
-    const [newAvailability, setNewAvailability] = useState({
-        userId: props.userId,
-        date: '',
-        startTime: '',
-        endTime: ''
-    })
-    const addAvailability = async (e) => {
-        e.preventDefault();
+    const createAvailability = async (newAvailability) => {
         let response = await axios.post('http://localhost:8080/api/v1/create/availability', newAvailability)
-        .catch(error => console.log(error));
+            .catch(error => console.log(error));
         let availResponse = response.data;
         setAvailability((prev) => ({...prev, [availResponse.id]: availResponse}))
-    }
+    } 
 
     /*
     /api/v1/update/availability/start-time
@@ -58,7 +51,7 @@ function AvailabilityContainer(props) {
     /*
     /api/v1/update/availability/end-time
 
-    params: id, newStartTime
+    params: id, newEndTime
     */
     const updateEndTime = async (e) => {
         
@@ -83,8 +76,13 @@ function AvailabilityContainer(props) {
 
     return (
         <div>
-            <Availability availability={availability} />
-
+            <Availability 
+                availability={availability} 
+                setAvailability={setAvailability} 
+                createAvailability={createAvailability}
+                updateStartTime={updateStartTime}
+                updateEndTime={updateEndTime}
+                deletAvailability={deletAvailability}/>
         </div>
     );
 }
