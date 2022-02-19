@@ -13,11 +13,11 @@ function NavBar(props) {
                         color:"white", 
                         textDecoration: "none"
                     }}
-                    activeStyle={{
+                    activestyle={{
                         color:"white", 
                         textDecoration: "none"
                     }}>
-                        Sesh<span class="navEDU">EDU</span>
+                        Sesh<span className="navEDU">EDU</span>
                     </NavLink>
                 </li>
                 <li>How It Works</li>
@@ -28,7 +28,7 @@ function NavBar(props) {
                         color:"white", 
                         textDecoration: "none"
                     }}
-                    activeStyle={{
+                    activestyle={{
                         color:"white", 
                         textDecoration: "none"
                     }}
@@ -42,7 +42,7 @@ function NavBar(props) {
                         color:"white", 
                         textDecoration: "none"
                     }}
-                    activeStyle={{
+                    activestyle={{
                         color:"white", 
                         textDecoration: "none"
                     }}

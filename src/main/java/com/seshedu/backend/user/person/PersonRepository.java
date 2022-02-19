@@ -11,5 +11,7 @@ import org.springframework.stereotype.Repository;
 public interface PersonRepository extends JpaRepository<Person, Long> {
   Optional<Person> findByUsername(String username);
   //returns all users in a city that does not contain username that calls for the method
-  Optional <List<Person>> findByCityAndUsernameNot(String city, String username);
+  Optional<List<Person>> findByCityAndUsernameNot(String city, String username);
+
+  Optional<List<Person>> findByCityAndIdNot(String city, Long id);
 }
