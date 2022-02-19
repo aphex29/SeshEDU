@@ -20,6 +20,8 @@ function UserProfile() {
             <div className="box">
                 <SkillsContainer />
 
+                <hr />
+
                 <HobbiesContainer />
             </div>
             

@@ -67,7 +67,8 @@ function Education(props) {
             
             <br />
 
-            <Button value="EDIT" handleClick={handleEditButtonChange} />
+            {!isEditing && <Button value="EDIT" handleClick={handleEditButtonChange} />}
+            {isEditing && <Button value="DONE" handleClick={handleEditButtonChange} />}
 
         </div>
     );

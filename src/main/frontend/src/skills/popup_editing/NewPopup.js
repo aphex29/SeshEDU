@@ -55,7 +55,7 @@ function EditPopup(props) {
         </IconButton>
         
         <Dialog open={open} onClose={handleClose}>
-            <DialogTitle>skills</DialogTitle>
+            <DialogTitle>Skills</DialogTitle>
             <br />
             <DialogContent>
                     <TextField 

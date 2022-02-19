@@ -72,7 +72,8 @@ function Availability(props) {
 
            <br />
 
-           <Button handleClick={handleEditButtonChange} value={"EDIT"}/>
+           {!isEditing && <Button value="EDIT" handleClick={handleEditButtonChange} />}
+            {isEditing && <Button value="DONE" handleClick={handleEditButtonChange} />}
         </div>
     );
 }

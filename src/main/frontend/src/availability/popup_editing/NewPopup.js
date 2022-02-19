@@ -129,7 +129,7 @@ function NewPopup(props) {
           
           <DialogActions>
             <Button handleClick={handleClose} value="Cancel" />
-            <Button handleClick={handleSubmit} value="Submit"/>
+            <Button handleClick={() => handleSubmit} value="Submit"/>
           </DialogActions>
         </Dialog>
       </div>
