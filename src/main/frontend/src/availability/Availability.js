@@ -1,9 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Availability.css';
 import Button from '../button/Button';
+import EditPopup from './popup_editing/EditPopup';
+import NewPopup from './popup_editing/NewPopup';
 
 function Availability(props) {
 
+    const [isEditing, setIsEditing] = useState(false);
+    const handleEditButtonChange = () => {
+        if (isEditing) {
+            setIsEditing(false);
+        } else {
+            setIsEditing(true);
+        }
+    }
+
+    // Convert from decimal to hour of day based on 12-hour clock
     const parseTime = (time) => {
         let hour = parseInt(time) % 12;
         let minute = "" + parseInt((time - parseInt(time)) * 60);
@@ -15,7 +27,8 @@ function Availability(props) {
             return <span>{"" + hour + ":" + minute + " PM"}</span>;
         }
     }
-    
+
+    const [openPopup, setOpenPopup] = useState(false);
     const getAvailHTML = (availableMap) => {
         let availability = []
         for (let key in availableMap) {
@@ -27,19 +40,39 @@ function Availability(props) {
                     <div className="available-date">{new Intl.DateTimeFormat('en-US', {month: 'long'}).format(avail.date)} {avail.date.getDate()}, {avail.date.getFullYear()}</div>
                     <br />
                     <div className="available-time">{parseTime(avail.startTime)} - {parseTime(avail.endTime)}</div>
+                    {isEditing && <EditPopup
+                        availability={props.availability}
+                        currAvailability={availableMap[key]} 
+                        openPopup={openPopup}
+                        setOpenPopup={setOpenPopup}
+                        setAvailability={props.setAvailability}
+                        updateStartTime={props.updateStartTime}
+                        updateEndTime={props.updateEndTime}
+                        deletAvailability={props.deletAvailability}
+                        />}
                 </div>
             )
+            
         }
         return availability;
     }
+
 
     return (
         <div>
             <h2>Availability</h2>
 
            {getAvailHTML(props.availability)}
+
            <br />
-            <Button value="EDIT" />
+
+            {isEditing && <NewPopup 
+            setAvailability={props.setAvailability}
+            createAvailability={props.createAvailability}/>}
+
+           <br />
+
+           <Button handleClick={handleEditButtonChange} value={"EDIT"}/>
         </div>
     );
 }

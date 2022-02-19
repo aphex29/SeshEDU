@@ -18,6 +18,7 @@ function App() {
       <Router>
             
           <NavBar isLoggedIn={true}/>
+         
 
           <Routes>
             <Route exact path="/" element={<Home />} />
