@@ -21,16 +21,20 @@ public class SkillController {
 
     @PostMapping("/api/v1/create/skill")
     public Skill addSkill(@RequestBody Map<String, String> json) {
-        return null;
+        Long userId = Long.parseLong(json.get("userId"));
+        String skill = json.get("skill");
+        return service.addSkill(userId, skill);
     }
 
     @PostMapping("/api/v1/get/skill/all")
     public List<Skill> getSkill(@RequestBody Map<String, String> json) {
-        return null;
+        Long userId = Long.parseLong(json.get("userId"));
+        return service.getSkills(userId);
     }
 
     @PostMapping("/api/v1/delete/skill")
     public void deleteSkill(@RequestBody Map<String, String> json) {
-
+        Long skillId = Long.parseLong(json.get("skillId"));
+        service.deleteSkill(skillId);
     }
 }

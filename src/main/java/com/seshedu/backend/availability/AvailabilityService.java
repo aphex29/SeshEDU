@@ -4,6 +4,7 @@ import com.seshedu.backend.session.Session;
 import com.seshedu.backend.user.User;
 import com.seshedu.backend.user.person.Person;
 import com.seshedu.backend.user.person.PersonRepository;
+import java.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +23,7 @@ public class AvailabilityService {
         this.userRepo = userRepo;
     }
 
-    public Availability createAvailability(Long userId, Date date, Float startTime, Float endTime) {
+    public Availability createAvailability(Long userId, LocalDate date, Float startTime, Float endTime) {
         Availability avail = new Availability(userId, date, startTime, endTime);
         return availRepo.save(avail);
     }
