@@ -20,7 +20,8 @@ function SkillsContainer(props) {
 
     return (
         <div>
-            <Skills skills={skills} />
+            <Skills skills={skills}
+            setSkills={setSkills}/>
         </div>
     );
 }

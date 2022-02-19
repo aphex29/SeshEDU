@@ -1,14 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Skills.css';
 import Button from '../button/Button';
+import EditPopup from './popup_editing/EditPopUp';
+import NewPopup from './popup_editing/NewPopup';
 
 function Skills(props) {
+
+const [isEditing, setIsEditing] = useState(false);
+  const handleEditButtonChange = () => {
+      if (isEditing) {
+          setIsEditing(false);
+      } else {
+          setIsEditing(true);
+      }
+  }
 
     const getSkillsHTML = (skillsMap) => {
         let skills = []
         for (let key in skillsMap) {
             let skill = skillsMap[key];
-            skills.push(<li key={skill.id}>{skill.skill}</li>)
+            skills.push(<li key={skill.id}>{skill.skill}
+            {isEditing &&<EditPopup
+            setSkills={props.setSkills}
+            currSkill={skill}/>} </li>)
         };
         return skills;
     }
@@ -22,7 +36,12 @@ function Skills(props) {
             </ul>
 
             <br />
-            <Button value="EDIT" />
+            {isEditing && <NewPopup 
+            setSkills={props.setSkills}
+            createSkill={props.createSkill}/>}
+            <br />
+
+            <Button value="EDIT" handleClick={handleEditButtonChange} />
         </div>
     );
 }

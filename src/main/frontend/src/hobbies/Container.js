@@ -20,7 +20,10 @@ function HobbiesContainer() {
   
     return(
       <div>
-        <Hobbies hobbies={hobbies} />
+        
+        <Hobbies hobbies={hobbies}
+          setHobbies={setHobbies}
+           />
       </div>
     );
   }
