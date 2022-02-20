@@ -126,8 +126,8 @@ function EditPopup(props) {
               </DialogContent>
             
               <DialogActions>
-                <Button handleClick={handleClose} value="Cancel" />
-                <Button handleClick={handleSubmit} value="Save" />
+                <Button type="button" handleClick={handleClose} value="Cancel" />
+                <Button type="submit" handleClick={handleSubmit} value="Save" />
               </DialogActions>
             </form>
         </Dialog>

@@ -21,11 +21,13 @@ function HobbiesContainer() {
     const createHobby = (newHobby) => {
       return async (e) => {
         e.preventDefault();
-        let response = await axios.post('http://localhost:8080/api/v1/create/hobby', newHobby)
+        if (newHobby.hobby !== '') {
+          let response = await axios.post('http://localhost:8080/api/v1/create/hobby', newHobby)
             .catch(error => console.log(error));
-        let hobbyResponse = response.data;
-        console.log(response.data)
-        setHobbies((prev) => ({...prev, [hobbyResponse.id]: hobbyResponse}));
+          let hobbyResponse = response.data;
+          console.log(response.data)
+          setHobbies((prev) => ({...prev, [hobbyResponse.id]: hobbyResponse}));
+        }
       }
     }
 

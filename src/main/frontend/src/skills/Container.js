@@ -21,7 +21,7 @@ function SkillsContainer(props) {
     const createSkill = (newSkill) => {
         return async (e) => {
           e.preventDefault();
-          if (newSkill != '') {
+          if (newSkill.skill !== '') {
             let response = await axios.post('http://localhost:8080/api/v1/create/skill', newSkill)
             .catch(error => console.log(error));
             let skillResponse = response.data;
