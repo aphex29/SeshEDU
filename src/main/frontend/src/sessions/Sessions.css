@@ -1,5 +1,7 @@
-#nearbyStudents img {
-    margin: 50px;
+.nearby-people {
+    margin: 20px;
+    text-align: center;
+    display: inline-block;
 }
 
 

@@ -1,15 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Button from '../../button/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
-import FormGroup from '@mui/material/FormGroup';
-import Stack from '@mui/material/Stack';
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -33,9 +28,6 @@ function EditPopup(props) {
     };
 
     const handleClickDelete = (id) => {
-      let all = {...props.education};
-      delete all[id];
-      props.setEducation(all);
 
     }
   
@@ -45,8 +37,6 @@ function EditPopup(props) {
     }
 
     const handleSubmit = () => {
-    
-      props.setEducation((prev) => ({...prev, [newEducation.id]:newEducation}));
       setOpen(false);
       setCurrEducation(newEducation);
     }
@@ -56,88 +46,90 @@ function EditPopup(props) {
         <IconButton onClick={handleClickOpen} aria-label="edit">
           <EditIcon />
         </IconButton>
-        <IconButton onClick={() => handleClickDelete(newEducation.id)}  aria-label="delete">
+        <IconButton onClick={props.deleteEducation(newEducation)}  aria-label="delete">
           <DeleteIcon />
         </IconButton>
         
         <Dialog open={open} onClose={handleClose}>
-            <DialogTitle>Education</DialogTitle>
-            <br />
-            <DialogContent>
-              <Box
-                  component="form"
-                  sx={{
-                    '& > :not(style)': { m: 1, width: '25ch' },
-                  }}
-                  noValidate
-                  autoComplete="off"
-                >
-                  <Box
-                  component="form"
-                  sx={{
-                    '& > :not(style)': { m: 0, width: '25ch' },
-                  }}
-                  noValidate
-                  autoComplete="off"
-                >
-                    <TextField 
-                        className="standard-basic" 
-                        label="School"
-                        name="school" 
-                        variant="standard" 
-                        value={newEducation.school}
-                        onChange={handleEducationChange}
+            <form onSubmit={props.updateEducation(newEducation)}>
+              <DialogTitle>Education</DialogTitle>
+              <br />
+              <DialogContent>
+                <Box
+                    component="div"
+                    sx={{
+                      '& > :not(style)': { m: 1, width: '25ch' },
+                    }}
+                    noValidate
+                    autoComplete="off"
+                  >
+                    <Box
+                    component="div"
+                    sx={{
+                      '& > :not(style)': { m: 0, width: '25ch' },
+                    }}
+                    noValidate
+                    autoComplete="off"
+                  >
+                      <TextField 
+                          className="standard-basic" 
+                          label="School"
+                          name="school" 
+                          variant="standard" 
+                          value={newEducation.school}
+                          onChange={handleEducationChange}
 
-                        />
-                  </Box>
+                          />
+                    </Box>
 
-                    <TextField 
-                        className="standard-basic" 
-                        label="Degree type"
-                        name="degreeType" 
-                        variant="standard" 
-                        value={newEducation.degreeType}
-                        onChange={handleEducationChange}
+                      <TextField 
+                          className="standard-basic" 
+                          label="Degree type"
+                          name="degreeType" 
+                          variant="standard" 
+                          value={newEducation.degreeType}
+                          onChange={handleEducationChange}
 
-                        />
+                          />
 
-                    <TextField 
-                        className="standard-basic" 
-                        label="Major"
-                        name="major" 
-                        variant="standard" 
-                        value={newEducation.major}
-                        onChange={handleEducationChange}
+                      <TextField 
+                          className="standard-basic" 
+                          label="Major"
+                          name="major" 
+                          variant="standard" 
+                          value={newEducation.major}
+                          onChange={handleEducationChange}
 
-                        />
-                    
+                          />
+                      
 
-                    <TextField 
-                        className="standard-basic" 
-                        label="Start Year"
-                        name="startYear" 
-                        variant="standard" 
-                        value={newEducation.startYear}
-                        onChange={handleEducationChange}
+                      <TextField 
+                          className="standard-basic" 
+                          label="Start Year"
+                          name="startYear" 
+                          variant="standard" 
+                          value={newEducation.startYear}
+                          onChange={handleEducationChange}
 
-                        />
+                          />
 
-                    <TextField 
-                        className="standard-basic" 
-                        label="End Year"
-                        name="endYear" 
-                        variant="standard" 
-                        value={newEducation.endYear}
-                        onChange={handleEducationChange}
+                      <TextField 
+                          className="standard-basic" 
+                          label="End Year"
+                          name="endYear" 
+                          variant="standard" 
+                          value={newEducation.endYear}
+                          onChange={handleEducationChange}
 
-                        />
-                  </Box>
-            </DialogContent>
-          
-          <DialogActions>
-            <Button handleClick={handleClose} value="Cancel" />
-            <Button handleClick={() => handleSubmit} value="Save" />
-          </DialogActions>
+                          />
+                    </Box>
+              </DialogContent>
+            
+              <DialogActions>
+                <Button handleClick={handleClose} value="Cancel" />
+                <Button handleClick={handleSubmit} value="Save" />
+              </DialogActions>
+            </form>
         </Dialog>
       </div>
     );

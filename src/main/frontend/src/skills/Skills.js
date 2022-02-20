@@ -22,10 +22,13 @@ const [isEditing, setIsEditing] = useState(false);
         let skills = []
         for (let key in skillsMap) {
             let skill = skillsMap[key];
-            skills.push(<li key={skill.id}>{capitalize(skill.skill)}
-            {isEditing &&<EditPopup
-            setSkills={props.setSkills}
-            currSkill={skill}/>} </li>)
+            if (skill !== null) {
+                skills.push(<li key={skill.id}>{capitalize(skill.skill)}
+                {isEditing && <EditPopup
+                currSkill={skill}
+                deleteSkill={props.deleteSkill}/>} </li>)
+            }
+            
         };
         return skills;
     }
@@ -40,8 +43,10 @@ const [isEditing, setIsEditing] = useState(false);
 
            
             {isEditing && <NewPopup 
-            setSkills={props.setSkills}
-            createSkill={props.createSkill}/>}
+                createSkill={props.createSkill}
+                skills={props.skills}
+                />}
+                
             <br />
 
             {!isEditing && <Button value="EDIT" handleClick={handleEditButtonChange} />}

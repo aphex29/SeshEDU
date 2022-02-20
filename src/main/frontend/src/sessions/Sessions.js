@@ -1,6 +1,7 @@
 import React from 'react';
 import './Sessions.css';
 import Button from '../button/Button';
+import PortraitIcon from '@mui/icons-material/Portrait';
 
 function Sessions(props) {
     return (
@@ -8,19 +9,45 @@ function Sessions(props) {
             <div id="nearbyStudents">
                 <h2>Nearby Students</h2>
 
-                <img src="" alt="Not Ethan" />
+                <div className="nearby-people">
+                    <PortraitIcon style={{fontSize: "125px", color: "#1390d8"}}  />
+                    <p>Not Ethan</p>
+                </div>
 
-                <img src="" alt="Not Thomas" />
+                <div className="nearby-people">
+                    <PortraitIcon style={{fontSize: "125px", color: "#1390d8"}}   />
+                    <p>Not Thomas</p>
+                </div>
 
-                <img src="" alt="Not Raina" />
+                <div className="nearby-people">
+                    <PortraitIcon style={{fontSize: "125px",color: "#1390d8" }}  />
+                    <p>Not Raina</p>
+                </div>
 
-                <img src="" alt="Not Clara" />
+                <div className="nearby-people">
+                    <PortraitIcon style={{fontSize: "125px", color: "#1390d8"}} />
+                    <p>Not Patrick</p>
+                </div>
 
-                <img src="" alt="Not Marek" />
+                <div className="nearby-people">
+                    <PortraitIcon style={{fontSize: "125px", color: "#1390d8"}}  />
+                    <p>Not Clara</p>
+                </div>
 
-                <img src="" alt="Not Patrick" />
+                <div className="nearby-people">
+                    <PortraitIcon style={{fontSize: "125px", color: "#1390d8"}} />
+                    <p>Not Nick</p>
+                </div>
 
-                <img src="" alt="Not Chris" />
+                <div className="nearby-people">
+                    <PortraitIcon style={{fontSize: "125px", color: "#1390d8"}}  />
+                    <p>Not Nate</p>
+                </div>
+
+                <div className="nearby-people">
+                    <PortraitIcon style={{fontSize: "125px", color: "#1390d8"}}  />
+                    <p>Not Marek</p>
+                </div>
             </div> 
 
             <Button value="Find Available Matches" />

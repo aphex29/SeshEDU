@@ -3,3 +3,36 @@ main {
     margin-left: 100px;
     margin-right: 100px;
 }
+
+.team-members {
+    text-align: center;
+}
+
+.member {
+    margin: 80px;
+}
+
+.member img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+.member img:hover {
+    width: 300px;
+    height: 300px;
+}
+
+.member h2 {
+    text-align: center;
+    font-weight: bold;
+}
+
+p {
+    text-align: center;
+}
+
+#teamHeader {
+    text-align: center;
+    font-size: 50px;
+}

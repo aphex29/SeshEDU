@@ -7,6 +7,8 @@ import EditPopup from './popup_editing/EditPopup';
 import Button from '../button/Button';
 
 function Education(props) {
+    const { education, createEducation, deleteEducation, updateEducation } = props;
+    
 
     const [isEditing, setIsEditing] = useState(false);
     const handleEditButtonChange = () => {
@@ -22,7 +24,7 @@ function Education(props) {
         for (let key in educationMap) {
             let edu = educationMap[key];
             educationInfo.push(
-                <li  key={edu.key} className="education-details">
+                <div  key={edu.id} className="education-details">
                     <img className="school-logo" src={depaulLogo} alt="DePaul University Logo" />
                     <br />
                     <div><b>{edu.school}</b></div>
@@ -31,15 +33,16 @@ function Education(props) {
                     <br />
                     <div className="school-years">{edu.startYear} - {edu.endYear}</div>
                     {isEditing && <EditPopup
-                        setEducation={props.setEducation}
-                        education={props.education}
+                        education={education}
                         currEducation={edu}  
+                        deleteEducation={deleteEducation}
+                        updateEducation={updateEducation}
                         
                         />}
                     <br />
                     <hr />
                     <br /> 
-                </li> 
+                </div> 
             )
         }
         educationInfo.sort((a, b) => {
@@ -54,21 +57,27 @@ function Education(props) {
             <h2>Education</h2>
 
             <ul>
-             {getEducationHTML(props.education)}
+             {getEducationHTML(education)}
             </ul>
             
 
-            <CoursesContainer />
+            
 
             <br />
-            {isEditing && <NewPopup 
-            setEducation={props.setEducation}
-            createEducation={props.createEducation}/>}
+            {isEditing && 
+            <NewPopup 
+                creatEducation={createEducation}
+                education={education}
+            />}
             
             <br />
 
             {!isEditing && <Button value="EDIT" handleClick={handleEditButtonChange} />}
             {isEditing && <Button value="DONE" handleClick={handleEditButtonChange} />}
+
+            <hr />
+
+            <CoursesContainer />
 
         </div>
     );

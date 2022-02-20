@@ -4,15 +4,8 @@ import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
-import FormGroup from '@mui/material/FormGroup';
-import Stack from '@mui/material/Stack';
 import IconButton from '@mui/material/IconButton';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
 import Box from '@mui/material/Box';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
@@ -21,9 +14,32 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 
 function NewPopup(props) {
+  
+  const getUserId = (educationMap) => {
+    for (let key in educationMap) {
+      return educationMap[key].userId;
+    }
+  }
 
-  const [currEducation, setCurrEducation] = useState({...props.currEducation})
-  const [newEducation, setNewEducation] = useState({...props.currEducation})
+  const [userId, setUserId] = useState(getUserId(props.education))
+  const [currEducation, setCurrEducation] = useState({
+    userId: userId,
+    school: '',
+    degreeType: '',
+    major: '',
+    startYear: '',
+    endYear: '',
+  })
+
+  const [newEducation, setNewEducation] = useState({
+    userId: userId,
+    school: '',
+    degreeType: '',
+    major: '',
+    startYear: '',
+    endYear: '',
+  })
+
   const [open, setOpen] = useState(false);
 
   const handleEducationChange = ({ target }) => {
@@ -36,15 +52,13 @@ function NewPopup(props) {
   };
 
   const handleClose = () => {
-    setNewEducation(currEducation);
     setOpen(false);
   }
 
-  const handleSubmit = () => {
-  
-    props.setEducation((prev) => ({...prev, [newEducation.id]:newEducation}));
+  const handleSubmit = (e) => {
+    
+    // props.setEducation((prev) => ({...prev, [newEducation.id]:newEducation}));
     setOpen(false);
-    setCurrEducation(newEducation);
   }
 
   return (
@@ -54,83 +68,93 @@ function NewPopup(props) {
       </IconButton>
       
       <Dialog open={open} onClose={handleClose}>
-          <DialogTitle>Education</DialogTitle>
-          <br />
-          <DialogContent>
-            <Box
-                component="form"
-                sx={{
-                  '& > :not(style)': { m: 1, width: '25ch' },
-                }}
-                noValidate
-                autoComplete="off"
-              >
-                <Box
-                component="form"
-                sx={{
-                  '& > :not(style)': { m: 0, width: '25ch' },
-                }}
-                noValidate
-                autoComplete="off"
-              >
-                  <TextField 
-                      className="standard-basic" 
-                      label="School"
-                      name="school" 
-                      variant="standard" 
-                      value={newEducation.school}
-                      onChange={handleEducationChange}
+        <form onSubmit={props.creatEducation(newEducation)}>
 
-                      />
-                </Box>
+            <DialogTitle>Education</DialogTitle>
+            <br />
+            <DialogContent>
+            
 
-                  <TextField 
-                      className="standard-basic" 
-                      label="Degree type"
-                      name="degreeType" 
-                      variant="standard" 
-                      value={newEducation.degreeType}
-                      onChange={handleEducationChange}
+          
+              <Box
+                  component="div"
+                  sx={{
+                    '& > :not(style)': { m: 1, width: '25ch' },
+                  }}
+                  noValidate
+                  autoComplete="off"
+                >
+                  <Box
+                  component="div"
+                  sx={{
+                    '& > :not(style)': { m: 0, width: '25ch' },
+                  }}
+                  noValidate
+                  autoComplete="off"
+                >
+                    <TextField 
+                        className="standard-basic" 
+                        label="School"
+                        name="school" 
+                        variant="standard" 
+                        value={newEducation.school}
+                        onInput={handleEducationChange}
 
-                      />
+                        />
+                  </Box>
 
-                  <TextField 
-                      className="standard-basic" 
-                      label="Major"
-                      name="major" 
-                      variant="standard" 
-                      value={newEducation.major}
-                      onChange={handleEducationChange}
+                    <TextField 
+                        className="standard-basic" 
+                        label="Degree type"
+                        name="degreeType" 
+                        variant="standard" 
+                        value={newEducation.degreeType}
+                        onInput={handleEducationChange}
 
-                      />
+                        />
+
+                    <TextField 
+                        className="standard-basic" 
+                        label="Major"
+                        name="major" 
+                        variant="standard" 
+                        value={newEducation.major}
+                        onInput={handleEducationChange}
+
+                        />
+                    
+
+                    <TextField 
+                        className="standard-basic" 
+                        label="Start Year"
+                        name="startYear" 
+                        variant="standard" 
+                        value={newEducation.startYear}
+                        onInput={handleEducationChange}
+
+                        />
+
+                    <TextField 
+                        className="standard-basic" 
+                        label="End Year"
+                        name="endYear" 
+                        variant="standard" 
+                        value={newEducation.endYear}
+                        onInput={handleEducationChange}
+
+                        />
+                  </Box>
                   
-
-                  <TextField 
-                      className="standard-basic" 
-                      label="Start Year"
-                      name="startYear" 
-                      variant="standard" 
-                      value={newEducation.startYear}
-                      onChange={handleEducationChange}
-
-                      />
-
-                  <TextField 
-                      className="standard-basic" 
-                      label="End Year"
-                      name="endYear" 
-                      variant="standard" 
-                      value={newEducation.endYear}
-                      onChange={handleEducationChange}
-
-                      />
-                </Box>
           </DialogContent>
         
-        <DialogActions>
-          <Button handleClick={handleClose} value="Cancel" />
-          <Button handleClick={() => handleSubmit} value="Save" />
-        </DialogActions>
+          <DialogActions>
+          
+            <Button handleClick={handleSubmit}  value="Submit" />
+            
+          </DialogActions>
+        
+        </form >
+        <Button handleClick={handleClose} value="Cancel" />
       </Dialog>
     </div>
   );

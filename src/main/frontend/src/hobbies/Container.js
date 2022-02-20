@@ -17,12 +17,37 @@ function HobbiesContainer() {
   
       getHobbies();
     }, [])
+
+    const createHobby = (newHobby) => {
+      return async (e) => {
+        e.preventDefault();
+        let response = await axios.post('http://localhost:8080/api/v1/create/hobby', newHobby)
+            .catch(error => console.log(error));
+        let hobbyResponse = response.data;
+        console.log(response.data)
+        setHobbies((prev) => ({...prev, [hobbyResponse.id]: hobbyResponse}));
+      }
+    }
+
+    const deleteHobby = (hobby) => {
+      return async (e) => {
+        e.preventDefault();
+        let response = await axios.post('http://localhost:8080/api/v1/delete/hobby', hobby)
+            .catch(error => console.log(error));
+          let newHobbies = {...hobbies};
+          delete newHobbies[hobby.id];
+          setHobbies(newHobbies);
+      }
+    }
   
     return(
       <div>
         
-        <Hobbies hobbies={hobbies}
+        <Hobbies 
           setHobbies={setHobbies}
+          hobbies={hobbies}
+          createHobby={createHobby}
+          deleteHobby={deleteHobby}
            />
       </div>
     );

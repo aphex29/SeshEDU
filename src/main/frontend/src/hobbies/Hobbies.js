@@ -26,8 +26,8 @@ function Hobbies(props) {
         let hobby = hobbiesMap[key];
         hobbies.push(<li key={hobby.id}>{capitalize(hobby.hobby)}
         {isEditing && <EditPopup
-          setHobbies={props.setHobbies}
-          currHobby={hobby}/>}
+          currHobby={hobby}
+          deleteHobby={props.deleteHobby}/>}
           </li>)
       };
       return hobbies;
@@ -41,9 +41,12 @@ function Hobbies(props) {
         </ul>
   
        
-        {isEditing && <NewPopup 
-          setHobbies={props.setHobbies}
-          createHobbies={props.createHobbies}/>}
+        {isEditing && 
+        <NewPopup 
+          createHobbies={props.createHobbies}
+          hobbies={props.hobbies}
+          createHobby={props.createHobby} />}
+          
        <br />
 
         {!isEditing && <Button value="EDIT" handleClick={handleEditButtonChange} />}

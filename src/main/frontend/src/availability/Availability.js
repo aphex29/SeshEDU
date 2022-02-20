@@ -34,7 +34,7 @@ function Availability(props) {
         for (let key in availableMap) {
             let avail = availableMap[key];
             availability.push(
-                <div key={avail.key} className="available-date-card">
+                <div key={avail.id} className="available-date-card">
                     <div className="available-day-of-week">{new Intl.DateTimeFormat('en-US', {weekday: 'long'}).format(avail.date)}</div>
                     <br />
                     <div className="available-date">{new Intl.DateTimeFormat('en-US', {month: 'long'}).format(avail.date)} {avail.date.getDate()}, {avail.date.getFullYear()}</div>

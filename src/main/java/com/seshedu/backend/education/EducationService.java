@@ -23,6 +23,17 @@ public class EducationService {
         return educationRepo.save(newEducation);
     }
 
+    public Education updateEducation(Long educationId, String school, String degreeType,
+                                     String major, Integer startYear, Integer endYear) {
+        Education newEducation = educationRepo.findById(educationId).orElseThrow(()-> new EntityNotFoundException(""+ educationId));
+        newEducation.setSchool(school);
+        newEducation.setDegreeType(degreeType);
+        newEducation.setMajor(major);
+        newEducation.setStartYear(startYear);
+        newEducation.setEndYear(endYear);
+        return educationRepo.save(newEducation);
+    }
+
     public List<Education> getAllEducation(Long userId) {
 
         List<Education> educations = educationRepo.findByUserId(userId).orElseThrow(()-> new EntityNotFoundException(""+ userId));

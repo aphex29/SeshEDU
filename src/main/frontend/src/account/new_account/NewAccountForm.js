@@ -7,24 +7,15 @@ function NewAccountForm(props) {
         <form id="NewAccountForm" onSubmit={props.handleClick}>
           <input 
             type="text"
-            id="txtFirstName"
-            placeholder="First Name"
-            name="firstName"
+            id="txtName"
+            placeholder="Name"
+            name="name"
             value={props.firstName}
             onChange={props.handleChange}
             required />
             <br />
     
-            <input 
-            type="text"
-            id="txtLastName"
-            placeholder="Last Name"
-            name="lastName"
-            value={props.lastName}
-            onChange={props.handleChange}
-            required />
-            <br />
-    
+            
             <input 
             type="text"
             id="txtUsername"
