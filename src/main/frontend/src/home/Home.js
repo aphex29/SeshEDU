@@ -61,11 +61,7 @@ function Home() {
                         of neighboring colleges, universities to come together and network, talk and share
                         aspects of each other's lives physically. With millions of students worldwide,
                         GreenEDU connects to find those in your community meant for you.</p>
-
-
-
-
-            </div>
+                </div>
              </div>
                 <div id = "formAlign">
                     <div className='accountBox'>

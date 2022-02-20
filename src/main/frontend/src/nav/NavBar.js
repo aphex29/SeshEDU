@@ -2,6 +2,7 @@ import React from 'react';
 import './NavBar.css';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
 
 function NavBar(props) {
     return (
@@ -21,7 +22,7 @@ function NavBar(props) {
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/#detailDiv"
+                    <HashLink smooth to="/#detailDiv"
                         style={{
                             color:"white", 
                             textDecoration: "none"
@@ -31,9 +32,9 @@ function NavBar(props) {
                             textDecoration: "none"
                         }}>
                         How It Works 
-                    </NavLink></li>
+                    </HashLink></li>
                 <li>
-                    <NavLink to="/#detailDiv"
+                    <HashLink smooth to="/#aboutDiv"
                         style={{
                             color:"white", 
                             textDecoration: "none"
@@ -43,7 +44,7 @@ function NavBar(props) {
                             textDecoration: "none"
                         }}>
                         About Us
-                    </NavLink></li>
+                    </HashLink></li>
                 <li>
                     <NavLink to="/team"
                         style={{
