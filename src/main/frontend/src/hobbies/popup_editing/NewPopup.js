@@ -1,26 +1,33 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Button from '../../button/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
-import FormGroup from '@mui/material/FormGroup';
-import Stack from '@mui/material/Stack';
 import IconButton from '@mui/material/IconButton';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 
 
 function NewPopup(props) {
+    
+    const getUserId = (hobbiesMap) => {
+      for (let key in hobbiesMap) {
+        return hobbiesMap[key].userId;
+      }
+    }
 
-    const [currHobby, setCurrHobby] = useState({...props.currHobby})
-    const [newHobby, setNewHobby] = useState({...props.currHobby})
+    const [userId, setUserId] = useState(getUserId(props.hobbies))
+    
+    const [currHobby, setCurrHobby] = useState({
+      userId: userId,
+      hobby: ''
+    })
+    const [newHobby, setNewHobby] = useState({
+      userId: userId,
+      hobby: ''
+    })
     const [open, setOpen] = useState(false);
 
     const handleHobbyChange = ({ target }) => {
@@ -29,24 +36,21 @@ function NewPopup(props) {
     }
   
     const handleClickOpen = () => {
+      setNewHobby(currHobby);
       setOpen(true);
     };
 
     const handleClickDelete = (id) => {
-      const {[id]: temp, ...rest} = props.hobbies;
-      props.hobbies(rest);
+      
     }
   
     const handleClose = () => {
-      setNewHobby(currHobby);
       setOpen(false);
     }
 
     const handleSubmit = () => {
-    
-      props.setHobbies((prev) => ({...prev, [newHobby.id]:newHobby}));
       setOpen(false);
-      setCurrHobby(newHobby);
+      
     }
   
     return (
@@ -56,6 +60,7 @@ function NewPopup(props) {
         </IconButton>
         
         <Dialog open={open} onClose={handleClose}>
+          <form onSubmit={props.createHobby(newHobby)}>
             <DialogTitle>Hobbies</DialogTitle>
             <br />
             <DialogContent>
@@ -70,10 +75,12 @@ function NewPopup(props) {
                         />
             </DialogContent>
           
-          <DialogActions>
-            <Button handleClick={handleClose} value="Cancel" />
-            <Button handleClick={handleSubmit} value="Save" />
-          </DialogActions>
+            <DialogActions>
+              <Button handleClick={handleClose} value="Cancel" />
+              <Button handleClick={handleSubmit} value="Save" />
+            </DialogActions>
+          </form>
+          
         </Dialog>
       </div>
     );

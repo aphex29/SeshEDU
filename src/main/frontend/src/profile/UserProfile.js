@@ -8,11 +8,9 @@ import AvailabilityContainer from '../availability/Container';
 import SessionsContainer from '../sessions/Container';
 import Button from '../button/Button';
 
-function UserProfile() {
+function UserProfile() { 
     return(
-        <main>
-            <h2>Profile</h2>
-
+        <div id="main-box">
             <ProfileHeaderContainer />
 
             <div className="box">
@@ -21,6 +19,8 @@ function UserProfile() {
             
             <div className="box">
                 <SkillsContainer />
+
+                <hr />
 
                 <HobbiesContainer />
             </div>
@@ -40,7 +40,7 @@ function UserProfile() {
             <div className="box">
                 <SessionsContainer />
             </div>
-        </main>
+        </div>
     );
 }
 

@@ -14,15 +14,21 @@ const [isEditing, setIsEditing] = useState(false);
           setIsEditing(true);
       }
   }
+    const capitalize = (word) => {
+        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+    }
 
     const getSkillsHTML = (skillsMap) => {
         let skills = []
         for (let key in skillsMap) {
             let skill = skillsMap[key];
-            skills.push(<li key={skill.id}>{skill.skill}
-            {isEditing &&<EditPopup
-            setSkills={props.setSkills}
-            currSkill={skill}/>} </li>)
+            if (skill !== null) {
+                skills.push(<li key={skill.id}>{capitalize(skill.skill)}
+                {isEditing && <EditPopup
+                currSkill={skill}
+                deleteSkill={props.deleteSkill}/>} </li>)
+            }
+            
         };
         return skills;
     }
@@ -35,13 +41,16 @@ const [isEditing, setIsEditing] = useState(false);
                 {getSkillsHTML(props.skills)}
             </ul>
 
-            <br />
+           
             {isEditing && <NewPopup 
-            setSkills={props.setSkills}
-            createSkill={props.createSkill}/>}
+                createSkill={props.createSkill}
+                skills={props.skills}
+                />}
+                
             <br />
 
-            <Button value="EDIT" handleClick={handleEditButtonChange} />
+            {!isEditing && <Button value="EDIT" handleClick={handleEditButtonChange} />}
+            {isEditing && <Button value="DONE" handleClick={handleEditButtonChange} />}
         </div>
     );
 }

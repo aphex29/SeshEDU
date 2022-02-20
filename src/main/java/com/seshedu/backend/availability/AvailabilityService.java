@@ -84,6 +84,15 @@ public class AvailabilityService {
         return matches;
     }
 
+    public Availability updateAvailability(Long availabilityId, LocalDate date, Float startTime, Float endTime) {
+        Availability avail = availRepo.findById(availabilityId)
+                .orElseThrow(() -> new EntityNotFoundException("" + availabilityId));
+        avail.setDate(date);
+        avail.setStartTime(startTime);
+        avail.setEndTime(endTime);
+        return availRepo.save(avail);
+    }
+
     public Availability updateStartTime(Long availabilityId, Float newStartTime) {
         Availability avail = availRepo.findById(availabilityId)
                 .orElseThrow(() -> new EntityNotFoundException("" + availabilityId));

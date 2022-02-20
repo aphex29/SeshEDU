@@ -18,10 +18,37 @@ function SkillsContainer(props) {
         getSkills();
     }, [])
 
+    const createSkill = (newSkill) => {
+        return async (e) => {
+          e.preventDefault();
+          if (newSkill.skill !== '') {
+            let response = await axios.post('http://localhost:8080/api/v1/create/skill', newSkill)
+            .catch(error => console.log(error));
+            let skillResponse = response.data;
+            console.log(response.data)
+            setSkills((prev) => ({...prev, [skillResponse.id]: skillResponse}));
+            }
+          }
+      }
+
+      const deleteSkill = (skill) => {
+        return async (e) => {
+          e.preventDefault();
+          let response = await axios.post('http://localhost:8080/api/v1/delete/skill', skill)
+              .catch(error => console.log(error));
+            let newSkills = {...skills};
+            delete newSkills[skill.id];
+            setSkills(newSkills);
+        }
+      }
+
     return (
         <div>
-            <Skills skills={skills}
-            setSkills={setSkills}/>
+            <Skills 
+                skills={skills}
+                setSkills={setSkills}
+                createSkill={createSkill}
+                deleteSkill={deleteSkill}/>
         </div>
     );
 }

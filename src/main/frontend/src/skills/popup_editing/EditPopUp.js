@@ -1,15 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Button from '../../button/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
-import FormGroup from '@mui/material/FormGroup';
-import Stack from '@mui/material/Stack';
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -43,14 +38,11 @@ function EditPopup(props) {
 
     const handleSubmit = () => {
     
-      props.setSkills((prev) => ({...prev, [newSkill.id]:newSkill}));
-      setOpen(false);
-      setCurrSkill(newSkill);
     }
   
     return (
       <div>
-        <IconButton  aria-label="delete">
+        <IconButton onClick={props.deleteSkill(currSkill)}  aria-label="delete">
           <DeleteIcon />
         </IconButton>
         

@@ -8,18 +8,18 @@ function LoginForm(props) {
             <input
             type="text"
             id="txtUserName"
-            placeholder="username"
+            placeholder="Username"
             value={props.name}
             onChange={props.handleChange}
             required />
             <br/>
 
             <input
-            type="text"
-            id="txtEmail"
-            placeholder="Email"
-            name="email"
-            value={props.email}
+            type="password"
+            id="txtPassword"
+            placeholder="Password"
+            name="password"
+            value={props.password}
             onChange={props.handleChange}
             required />
             <br />

@@ -2,7 +2,8 @@ package com.seshedu.backend.skill;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name = "Skill")
+@Table(name = "skill")
 public class Skill {
     @Id
     @SequenceGenerator(
@@ -33,13 +34,17 @@ public class Skill {
     )
     private String skill;
 
-    public Skill(Long userId, String hobby ) {
+    public Skill(Long userId, String skill ) {
         this.userId = userId;
         this.skill = skill;
 
     }
 
     public Skill(){}//empty constructor
+
+    public Long getId() {
+        return id;
+    }
 
     public Long getUserId() {
         return userId;

@@ -16,14 +16,18 @@ function Hobbies(props) {
       }
   }
 
+    const capitalize = (word) => {
+      return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+    }
+
     const getHobbiesHTML = (hobbiesMap) => {
       let hobbies = []
       for (let key in hobbiesMap) {
         let hobby = hobbiesMap[key];
-        hobbies.push(<li key={hobby.id}>{hobby.hobby}
+        hobbies.push(<li key={hobby.id}>{capitalize(hobby.hobby)}
         {isEditing && <EditPopup
-          setHobbies={props.setHobbies}
-          currHobby={hobby}/>}
+          currHobby={hobby}
+          deleteHobby={props.deleteHobby}/>}
           </li>)
       };
       return hobbies;
@@ -32,17 +36,22 @@ function Hobbies(props) {
     return (
       <div>
         <h2>Hobbies</h2>
-        <ul>
+        <ul id="hobbiesList">
           {getHobbiesHTML(props.hobbies)}
         </ul>
   
-        <br />
-        {isEditing && <NewPopup 
-          setHobbies={props.setHobbies}
-          createHobbies={props.createHobbies}/>}
+       
+        {isEditing && 
+        <NewPopup 
+          createHobbies={props.createHobbies}
+          hobbies={props.hobbies}
+          createHobby={props.createHobby} />}
+          
        <br />
 
-        <Button value="EDIT" handleClick={handleEditButtonChange} />
+        {!isEditing && <Button value="EDIT" handleClick={handleEditButtonChange} />}
+        {isEditing && <Button value="DONE" handleClick={handleEditButtonChange} />}
+
       </div>
     );
   }

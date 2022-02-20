@@ -5,10 +5,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
 
-@Controller
+@RestController
 @CrossOrigin(origins = "http://localhost:3000")
 public class UserAccountController {
     UserAccountService service;
@@ -44,7 +45,7 @@ public class UserAccountController {
 
     @PostMapping("/api/v1/delete/account")
     public void deleteAccount(@RequestBody Map<String, String> json) {
-        Long accountId = Long.parseLong(json.get("accountId"));
+        Long accountId = Long.parseLong(json.get("id"));
         service.deleteAccount(accountId);
     }
 }

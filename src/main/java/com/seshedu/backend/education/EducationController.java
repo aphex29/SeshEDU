@@ -5,11 +5,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Map;
 
-@Controller
+@RestController
 @CrossOrigin(origins = "http://localhost:3000")
 public class EducationController {
     EducationService service;
@@ -28,6 +29,17 @@ public class EducationController {
         Integer startYear = Integer.parseInt(json.get("startYear"));
         Integer endYear = Integer.parseInt(json.get("endYear"));
         return service.createEducation(userId,school,degreeType,major,startYear,endYear);
+    }
+
+    @PostMapping("/api/v1/update/education")
+    public Education updateEducation(@RequestBody Map<String, String> json) {
+        Long educationId = Long.parseLong(json.get("id"));
+        String school = json.get("school");
+        String degreeType = json.get("degreeType");
+        String major = json.get("major");
+        Integer startYear = Integer.parseInt(json.get("startYear"));
+        Integer endYear = Integer.parseInt(json.get("endYear"));
+        return service.updateEducation(educationId, school,degreeType,major,startYear,endYear);
     }
 
     @PostMapping("/api/v1/get/education")
@@ -73,7 +85,7 @@ public class EducationController {
 
     @PostMapping("/api/v1/delete/education")
     public void deleteEducation(@RequestBody Map<String, String> json) {
-        Long educationId = Long.parseLong(json.get("educationId"));
+        Long educationId = Long.parseLong(json.get("id"));
         service.deleteEducation(educationId);
     }
 }

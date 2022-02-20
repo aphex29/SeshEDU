@@ -5,11 +5,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Map;
 
-@Controller
+@RestController
 @CrossOrigin(origins = "http://localhost:3000")
 public class CourseController {
     CourseService service;
@@ -34,7 +35,7 @@ public class CourseController {
 
     @PostMapping("/api/v1/delete/course")
     public void deleteCourse(@RequestBody Map<String, String> json) {
-        Long courseId = Long.parseLong(json.get("courseId"));
+        Long courseId = Long.parseLong(json.get("id"));
         service.deleteCourse(courseId);
     }
 }

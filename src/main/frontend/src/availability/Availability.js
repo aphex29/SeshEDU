@@ -5,6 +5,7 @@ import EditPopup from './popup_editing/EditPopup';
 import NewPopup from './popup_editing/NewPopup';
 
 function Availability(props) {
+    const { availability, createAvailability, deleteAvailability, updateAvailability} = props;
 
     const [isEditing, setIsEditing] = useState(false);
     const handleEditButtonChange = () => {
@@ -28,33 +29,29 @@ function Availability(props) {
         }
     }
 
-    const [openPopup, setOpenPopup] = useState(false);
     const getAvailHTML = (availableMap) => {
-        let availability = []
+        let availabilityList = []
         for (let key in availableMap) {
             let avail = availableMap[key];
-            availability.push(
-                <div key={avail.key} className="available-date-card">
+            availabilityList.push(
+                <div key={avail.id} className="available-date-card">
                     <div className="available-day-of-week">{new Intl.DateTimeFormat('en-US', {weekday: 'long'}).format(avail.date)}</div>
                     <br />
                     <div className="available-date">{new Intl.DateTimeFormat('en-US', {month: 'long'}).format(avail.date)} {avail.date.getDate()}, {avail.date.getFullYear()}</div>
                     <br />
                     <div className="available-time">{parseTime(avail.startTime)} - {parseTime(avail.endTime)}</div>
-                    {isEditing && <EditPopup
-                        availability={props.availability}
-                        currAvailability={availableMap[key]} 
-                        openPopup={openPopup}
-                        setOpenPopup={setOpenPopup}
-                        setAvailability={props.setAvailability}
-                        updateStartTime={props.updateStartTime}
-                        updateEndTime={props.updateEndTime}
-                        deletAvailability={props.deletAvailability}
+                    {isEditing && 
+                    <EditPopup
+                        availability={availability}
+                        currAvailability={avail} 
+                        deleteAvailability={deleteAvailability}
+                        updateAvailability={updateAvailability}
                         />}
                 </div>
             )
             
         }
-        return availability;
+        return availabilityList;
     }
 
 
@@ -62,17 +59,18 @@ function Availability(props) {
         <div>
             <h2>Availability</h2>
 
-           {getAvailHTML(props.availability)}
+           {getAvailHTML(availability)}
 
            <br />
 
-            {isEditing && <NewPopup 
-            setAvailability={props.setAvailability}
-            createAvailability={props.createAvailability}/>}
-
+            {isEditing && 
+            <NewPopup 
+                availability={availability}
+                createAvailability={createAvailability}/>}
            <br />
 
-           <Button handleClick={handleEditButtonChange} value={"EDIT"}/>
+           {!isEditing && <Button value="EDIT" handleClick={handleEditButtonChange} />}
+            {isEditing && <Button value="DONE" handleClick={handleEditButtonChange} />}
         </div>
     );
 }

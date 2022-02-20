@@ -2,7 +2,8 @@ package com.seshedu.backend.hobby;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name = "Hobby")
+@Table(name = "hobby")
 public class Hobby {
     @Id
     @SequenceGenerator(
@@ -39,6 +40,10 @@ public class Hobby {
     }
 
     public Hobby(){}//empty constructor
+
+    public Long getId() {
+        return id;
+    }
 
     public Long getUserId() {
         return userId;
