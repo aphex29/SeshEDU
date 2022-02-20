@@ -48,6 +48,7 @@ function NewPopup(props) {
   }
 
   const handleClickOpen = () => {
+    setNewEducation(currEducation);
     setOpen(true);
   };
 
@@ -56,8 +57,6 @@ function NewPopup(props) {
   }
 
   const handleSubmit = (e) => {
-    
-    // props.setEducation((prev) => ({...prev, [newEducation.id]:newEducation}));
     setOpen(false);
   }
 

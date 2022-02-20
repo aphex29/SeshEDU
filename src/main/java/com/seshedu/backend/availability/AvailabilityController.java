@@ -44,6 +44,15 @@ public class AvailabilityController {
         return service.getAvailableMatches(userId);
     }
 
+    @PostMapping("/api/v1/update/availability")
+    public Availability updateAvailability(@RequestBody Map<String, String> json) {
+        Long availabilityId = Long.parseLong(json.get("id"));
+        LocalDate date = LocalDate.parse(json.get("date"));
+        Float startTime = Float.parseFloat(json.get("startTime"));
+        Float endTime = Float.parseFloat(json.get("endTime"));
+        return service.updateAvailability(availabilityId,date,startTime,endTime);
+    }
+
     @PostMapping("/api/v1/update/availability/start-time")
     public Availability updateStartTime(@RequestBody Map<String, String> json) {
         Long availabilityId = Long.parseLong(json.get("availabilityId"));

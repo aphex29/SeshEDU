@@ -17,7 +17,7 @@ function ProfileHeader(props) {
 
             <h1 id="name">{user.name}</h1>
 
-            <p id="username">@{user.username}</p>
+            <p className="username">@{user.username}</p>
         </div> 
     );
 }

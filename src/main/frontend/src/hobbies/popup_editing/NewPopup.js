@@ -20,6 +20,10 @@ function NewPopup(props) {
 
     const [userId, setUserId] = useState(getUserId(props.hobbies))
     
+    const [currHobby, setCurrHobby] = useState({
+      userId: userId,
+      hobby: ''
+    })
     const [newHobby, setNewHobby] = useState({
       userId: userId,
       hobby: ''
@@ -32,6 +36,7 @@ function NewPopup(props) {
     }
   
     const handleClickOpen = () => {
+      setNewHobby(currHobby);
       setOpen(true);
     };
 

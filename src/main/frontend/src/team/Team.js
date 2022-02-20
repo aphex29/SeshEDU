@@ -29,7 +29,7 @@ function Team(props) {
             job: 'Documentation'
         },
         {
-            name: 'Mark',
+            name: 'Marek',
             img: Mark,
             job: 'Design'
         },

@@ -1,17 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Button from '../../button/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import TimePicker from '@mui/lab/TimePicker';
 import DatePicker from '@mui/lab/DatePicker';
 import FormGroup from '@mui/material/FormGroup';
-import Stack from '@mui/material/Stack';
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -68,8 +66,6 @@ function EditPopup(props) {
     }
 
     const handleSubmit = () => {
-      let converted = convertDateTimeToFloats(newAvailabilty);
-      props.setAvailability((prev) => ({...prev, [newAvailabilty.id]:converted}));
       setOpen(false);
       setCurrAvailability(newAvailabilty);
     }
@@ -79,11 +75,12 @@ function EditPopup(props) {
         <IconButton onClick={handleClickOpen} aria-label="edit">
           <EditIcon />
         </IconButton>
-        <IconButton  aria-label="delete">
+        <IconButton onClick={props.deleteAvailability(newAvailabilty)}  aria-label="delete">
           <DeleteIcon />
         </IconButton>
         
         <Dialog open={open} onClose={handleClose}>
+          <form onSubmit={props.updateAvailability(newAvailabilty)}>
             <DialogTitle>Availability</DialogTitle>
             <br />
             <DialogContent>
@@ -118,12 +115,13 @@ function EditPopup(props) {
                     
                     </LocalizationProvider>
                     </FormGroup>
-            </DialogContent>
-          
-          <DialogActions>
-            <Button handleClick={handleClose} value="Cancel" />
-            <Button handleClick={() => handleSubmit} value="Save" />
-          </DialogActions>
+              </DialogContent>
+            
+              <DialogActions>
+                <Button handleClick={handleClose} value="Cancel" />
+                <Button handleClick={handleSubmit} value="Save" />
+              </DialogActions>
+          </form>
         </Dialog>
       </div>
     );

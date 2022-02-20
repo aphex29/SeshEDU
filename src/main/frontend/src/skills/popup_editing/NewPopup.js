@@ -18,6 +18,11 @@ function EditPopup(props) {
     }
 
     const [userId, setUserId] = useState(getUserId(props.skills))
+
+    const [currSkill, setCurrSkill] = useState({
+      userId: userId,
+      skill: ''
+    })
     
     const [newSkill, setNewSkill] = useState({
       userId: userId,
@@ -32,6 +37,7 @@ function EditPopup(props) {
     }
   
     const handleClickOpen = () => {
+      setNewSkill(currSkill);
       setOpen(true);
     };
 

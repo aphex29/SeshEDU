@@ -4,6 +4,8 @@ import com.seshedu.backend.course.CourseRepository;
 import com.seshedu.backend.course.CourseService;
 import com.seshedu.backend.education.Education;
 import com.seshedu.backend.education.EducationRepository;
+import com.seshedu.backend.hobby.Hobby;
+import com.seshedu.backend.hobby.HobbyRepository;
 import com.seshedu.backend.user.person.PersonService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -29,7 +31,7 @@ public class BackendApplication {
 	}
 
 	@Bean
-	CommandLineRunner commandLineRunner(PersonRepository pRepo,  EducationRepository educationRepo) {
+	CommandLineRunner commandLineRunner(PersonRepository pRepo, EducationRepository educationRepo, HobbyRepository hobbyRepo) {
 		return args -> {
 			PersonService ps = new PersonService(pRepo);
 			ps.createPerson("pmarkows","Patrick Markowski", "pm@depaul.edu", "1234", "Chicago", "Illinois");
@@ -42,6 +44,11 @@ public class BackendApplication {
 			ps.updateUsername("pmarkows", "tjefferson");
 			ps.updateEmail("tjefferson", "tjefferson@depaul.edu");
 			System.out.println(ps.getNearbyPeople("tjefferson", "Naperville"));
+
+			hobbyRepo.save(new Hobby(1L, "Hiking"));
+			hobbyRepo.save(new Hobby(1L, "Running"));
+			hobbyRepo.save(new Hobby(1L, "Piano"));
+
 
 
 			/*
@@ -72,6 +79,7 @@ public class BackendApplication {
 			if (uas.verifyAccount(3L, "a@depaul.edu", "query")) System.out.println("Account verified");
 			else System.out.println("Account not verified");
 		*/
+
 
 
 			Education ed1 = new Education(2L, "DePaul University", "Bachelor of Science", "Computer Science", 2018, 2022);
