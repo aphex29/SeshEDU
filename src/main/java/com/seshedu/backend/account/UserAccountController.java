@@ -30,10 +30,9 @@ public class UserAccountController {
 
     @PostMapping("/api/v1/get/account/verify")
     public Boolean verifyAccount(@RequestBody Map<String, String> json) {
-        Long userId = Long.parseLong(json.get("userId"));
-        String email = json.get("email");
+        String username = json.get("username");
         String password = json.get("password");
-        return service.verifyAccount(userId,email,password);
+        return service.verifyAccount(username, password);
     }
 
     @PostMapping("/api/v1/update/account/password")

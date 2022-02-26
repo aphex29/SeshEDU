@@ -7,7 +7,8 @@ import plan from '../planStep.png';
 import go from '../goStep.png';
 import greenDesk from '../deskgreen.png';
 
-function Home() {
+function Home(props) {
+    const { setIsLoggedIn, setUserInfo } = props;
     
     return(
         <main>
@@ -65,11 +66,11 @@ function Home() {
              </div>
                 <div id = "formAlign">
                     <div className='accountBox'>
-                    <NewAccountFormContainer />
+                    <NewAccountFormContainer setIsLoggedIn={setIsLoggedIn} setUserInfo={setUserInfo} />
                     </div>
 
                     <div className='accountBox'>
-                    <LoginFormContainer />
+                    <LoginFormContainer setIsLoggedIn={setIsLoggedIn} setUserInfo={setUserInfo} />
                     </div>
                 </div>
         </main>

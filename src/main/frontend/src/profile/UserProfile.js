@@ -14,19 +14,19 @@ function UserProfile() {
             <ProfileHeaderContainer />
 
             <div className="box">
-                <EducationContainer />
+                <EducationContainer userId={1} />
             </div>
             
             <div className="box">
-                <SkillsContainer />
+                <SkillsContainer userId={1} />
 
                 <hr />
 
-                <HobbiesContainer />
+                <HobbiesContainer userId={1} />
             </div>
             
             <div className="box">
-                <AvailabilityContainer />
+                <AvailabilityContainer userId={1} />
             </div>
 
             <div id="sessionButtons">
@@ -37,8 +37,8 @@ function UserProfile() {
                 <Button type="submit" value="Tutor Session" />
             </div>
 
-            <div className="box">
-                <SessionsContainer />
+            <div className="box" >
+                <SessionsContainer userId={1} city="Chicago" />
             </div>
         </div>
     );

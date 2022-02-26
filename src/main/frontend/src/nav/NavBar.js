@@ -5,17 +5,19 @@ import { NavLink } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
 
 function NavBar(props) {
+    const { username } = props;
+
     return (
         <nav>
             <ul>
                 <li id="navSeshEDU">
                     <NavLink to="/"
                         style={{
-                            color:"white", 
+                            color:"#FFFFFF", 
                             textDecoration: "none"
                         }}
                         activestyle={{
-                            color:"white", 
+                            color:"#FFFFFF", 
                             textDecoration: "none"
                         }}>
                         Sesh<span className="navEDU">EDU</span>
@@ -24,11 +26,11 @@ function NavBar(props) {
                 <li>
                     <HashLink smooth to="/#detailDiv"
                         style={{
-                            color:"white", 
+                            color:"#FFFFFF", 
                             textDecoration: "none"
                         }}
                         activestyle={{
-                            color:"white", 
+                            color:"#FFFFFF", 
                             textDecoration: "none"
                         }}>
                         How It Works 
@@ -36,11 +38,11 @@ function NavBar(props) {
                 <li>
                     <HashLink smooth to="/#aboutDiv"
                         style={{
-                            color:"white", 
+                            color:"#FFFFFF", 
                             textDecoration: "none"
                         }}
                         activestyle={{
-                            color:"white", 
+                            color:"#FFFFFF", 
                             textDecoration: "none"
                         }}>
                         About Us
@@ -48,26 +50,47 @@ function NavBar(props) {
                 <li>
                     <NavLink to="/team"
                         style={{
-                            color:"white", 
+                            color:"#FFFFFF", 
                             textDecoration: "none"
                         }}
                         activestyle={{
-                            color:"white", 
+                            color:"#FFFFFF", 
                             textDecoration: "none"
                         }}
                         >Team
                     </NavLink>
                 </li>
-                {!props.isLoggedIn && <li>Login</li>}
-                {!props.isLoggedIn && <li>Create Account</li>}
-                {props.isLoggedIn && <li>
-                    <NavLink to="/profile"
+                {!props.isLoggedIn && <li>
+                    <HashLink smooth to="/#formAlign"
                         style={{
-                            color:"white", 
+                            color:"#FFFFFF", 
                             textDecoration: "none"
                         }}
                         activestyle={{
-                            color:"white", 
+                            color:"#FFFFFF", 
+                            textDecoration: "none"
+                        }}>
+                        Login
+                    </HashLink></li>}
+                {!props.isLoggedIn && <li><HashLink smooth to="/#formAlign"
+                        style={{
+                            color:"#FFFFFF", 
+                            textDecoration: "none"
+                        }}
+                        activestyle={{
+                            color:"#FFFFFF", 
+                            textDecoration: "none"
+                        }}>
+                        Create Account
+                    </HashLink></li>}
+                {props.isLoggedIn && <li>
+                    <NavLink to={"/profile/" + username}
+                        style={{
+                            color:"#FFFFFF", 
+                            textDecoration: "none"
+                        }}
+                        activestyle={{
+                            color:"#FFFFFF", 
                             textDecoration: "none"
                         }}
                         >Profile

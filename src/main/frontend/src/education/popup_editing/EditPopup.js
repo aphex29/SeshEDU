@@ -26,10 +26,6 @@ function EditPopup(props) {
     const handleClickOpen = () => {
       setOpen(true);
     };
-
-    const handleClickDelete = (id) => {
-
-    }
   
     const handleClose = () => {
       setNewEducation(currEducation);

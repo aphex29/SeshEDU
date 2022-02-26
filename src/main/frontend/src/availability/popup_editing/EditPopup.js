@@ -54,11 +54,6 @@ function EditPopup(props) {
     const handleClickOpen = () => {
       setOpen(true);
     };
-
-    const handleClickDelete = (id) => {
-      const {[id]: temp, ...rest} = props.availability;
-      props.setAvailability(rest);
-    }
   
     const handleClose = () => {
       setNewAvailability(currAvailability);
@@ -118,8 +113,8 @@ function EditPopup(props) {
               </DialogContent>
             
               <DialogActions>
-                <Button handleClick={handleClose} value="Cancel" />
-                <Button handleClick={handleSubmit} value="Save" />
+                <Button type="button" handleClick={handleClose} value="Cancel" />
+                <Button type="submit" handleClick={handleSubmit} value="Save" />
               </DialogActions>
           </form>
         </Dialog>

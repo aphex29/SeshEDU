@@ -8,7 +8,6 @@ import Button from '../button/Button';
 
 function Education(props) {
     const { education, createEducation, deleteEducation, updateEducation } = props;
-    
 
     const [isEditing, setIsEditing] = useState(false);
     const handleEditButtonChange = () => {
@@ -19,7 +18,9 @@ function Education(props) {
         }
     }
 
+
     const getEducationHTML = (educationMap) => {
+        if (educationMap == {}) return <div></div>;
         let educationInfo = []
         for (let key in educationMap) {
             let edu = educationMap[key];

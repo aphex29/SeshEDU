@@ -82,8 +82,8 @@ public class BackendApplication {
 
 
 
-			Education ed1 = new Education(2L, "DePaul University", "Bachelor of Science", "Computer Science", 2018, 2022);
-			Education ed2 = new Education(2L, "DePaul University", "Master", "Computer Science", 2022, 2024);
+			Education ed1 = new Education(1L, "DePaul University", "Bachelor of Science", "Computer Science", 2018, 2022);
+			Education ed2 = new Education(1L, "DePaul University", "Master", "Computer Science", 2022, 2024);
 			educationRepo.save(ed1);
 			Education result = educationRepo.findById(1L).orElseThrow(() -> new EntityNotFoundException("" + 1L));
 			System.out.println(result);
@@ -91,7 +91,7 @@ public class BackendApplication {
 			result2.setSchool("Loyola University");
 			educationRepo.save(result2);
 			educationRepo.save(ed2);
-			List<Education> result3 = educationRepo.findByUserId(2L).orElseThrow(() -> new EntityNotFoundException("" + 2L));
+			List<Education> result3 = educationRepo.findByUserId(1L).orElseThrow(() -> new EntityNotFoundException("" + 1L));
 
 			System.out.println(result3);
 

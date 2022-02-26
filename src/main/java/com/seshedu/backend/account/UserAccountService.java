@@ -19,14 +19,14 @@ public class UserAccountService {
 
     }
 
-    public Boolean verifyAccount(Long userId, String email, String password) {
+    public Boolean verifyAccount(String username, String password) {
         Boolean ret = false;
-        UserAccount account = accountRepo.findByUserId(userId)
-            .orElseThrow(() -> new EntityNotFoundException("" + userId));
+        UserAccount account = accountRepo.findByUsername(username)
+            .orElseThrow(() -> new EntityNotFoundException(username));
         Long currId = account.getUserId();
-        String currEmail = account.getEmail();
+        String currUsername = account.getUsername();
         String currPass = account.getPassword();
-        if (currId == userId && currEmail == email && currPass == password){ret = true;}
+        if (currUsername.equals(username) && currPass.equals(password)){ret = true;}
         return ret;
 
     }

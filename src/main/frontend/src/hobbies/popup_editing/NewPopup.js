@@ -12,22 +12,14 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 function NewPopup(props) {
     
-    const getUserId = (hobbiesMap) => {
-      for (let key in hobbiesMap) {
-        return hobbiesMap[key].userId;
-      }
-    }
-
-    const [userId, setUserId] = useState(getUserId(props.hobbies))
-    
     const [currHobby, setCurrHobby] = useState({
-      userId: userId,
       hobby: ''
     })
+
     const [newHobby, setNewHobby] = useState({
-      userId: userId,
       hobby: ''
     })
+
     const [open, setOpen] = useState(false);
 
     const handleHobbyChange = ({ target }) => {
@@ -39,10 +31,6 @@ function NewPopup(props) {
       setNewHobby(currHobby);
       setOpen(true);
     };
-
-    const handleClickDelete = (id) => {
-      
-    }
   
     const handleClose = () => {
       setOpen(false);
@@ -76,8 +64,8 @@ function NewPopup(props) {
             </DialogContent>
           
             <DialogActions>
-              <Button handleClick={handleClose} value="Cancel" />
-              <Button handleClick={handleSubmit} value="Save" />
+              <Button type="button" handleClick={handleClose} value="Cancel" />
+              <Button type="submit" handleClick={handleSubmit} value="Save" />
             </DialogActions>
           </form>
           

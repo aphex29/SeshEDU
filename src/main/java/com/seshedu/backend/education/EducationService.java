@@ -35,9 +35,8 @@ public class EducationService {
     }
 
     public List<Education> getAllEducation(Long userId) {
-
-        List<Education> educations = educationRepo.findByUserId(userId).orElseThrow(()-> new EntityNotFoundException(""+ userId));
-        return educations;
+        List<Education> allEducation = educationRepo.findByUserId(userId).orElseThrow(()-> new EntityNotFoundException(""+ userId));
+        return allEducation;
     }
 
     public Education updateSchool(Long educationId, String newSchool) {

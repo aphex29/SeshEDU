@@ -1,31 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import Availability from './Availability';
+import { convertArrayToObject } from '../response/Helpers';
 import axios from 'axios';
 
 function AvailabilityContainer(props) {
     // Add logic for objects, handling form, and axios communication w/ backend
+    const { userId } = props;
     const [availability, setAvailability] = useState({});
 
     useEffect(() => {
-        /*
-        /api/v1/get/availability
-
-        NOTE: use props.userId to get info for user.
-
-        params: id
-        */
-        const getAvailability = () => {
-            let availabilityMap = {
-                1: {id: 1, userId: 2, date: new Date(2022, 2, 16), startTime: 12.75, endTime:14.50},
-                3: {id: 3, userId: 2, date: new Date(2022, 2, 17), startTime: 10.25, endTime:11.25}
+        const getAvailability = async () => {
+            let response = await axios.post('http://localhost:8080/api/v1/get/availability/all', {userId: userId})
+                .catch(error => console.log(error));
+            let allAvailability = convertArrayToObject(response.data, 'id');
+            for (let key in allAvailability) {
+                allAvailability[key].date = "" + allAvailability[key].date + "T00:00-0800";
+                allAvailability[key].date = new Date(allAvailability[key].date)
             }
-            setAvailability(availabilityMap); 
+            setAvailability(allAvailability || {});
         }
 
         getAvailability();
     }, []);
     
-    // parse time from Date object to float
+    // parse time from Date object to float for sending to backend
     const convertTimeToFloats = (availability) => {
         let parsed = availability;
         for (let key in availability) {
@@ -49,14 +47,12 @@ function AvailabilityContainer(props) {
             parsedDate += monthStartingAtOne;
         }
 
-        let dayOfMonthStartingAtOne = date.getDate() + 1;
+        let dayOfMonthStartingAtOne = date.getDate();
         if (dayOfMonthStartingAtOne < 10) {
             parsedDate += "-0" + dayOfMonthStartingAtOne;
         } else {
             parsedDate += "-" + dayOfMonthStartingAtOne;
         }
-
-        // parsedDate += '-' + (date.getDate() + 1);
         return parsedDate;
     }
 
@@ -68,13 +64,14 @@ function AvailabilityContainer(props) {
     const createAvailability = (newAvailability) => { 
         return async (e) => {
             e.preventDefault();
-            let parsed = {...newAvailability};
+            let parsed = {...newAvailability, ['userId']: userId};
             parsed.date = parseDate(newAvailability.date);
             parsed = convertTimeToFloats(parsed);
             let response = await axios.post('http://localhost:8080/api/v1/create/availability', parsed)
                 .catch(error => console.log(error));
             let availResponse = response.data;
-            availResponse.date = new Date(availResponse.date);
+            availResponse.date = "" + availResponse.date + "T00:00-0800"
+            availResponse.date = new Date(availResponse.date)
             setAvailability((prev) => ({...prev, [availResponse.id]: availResponse}))
         } 
     } 
@@ -88,7 +85,8 @@ function AvailabilityContainer(props) {
             let response = await axios.post('http://localhost:8080/api/v1/update/availability', parsed)
                 .catch(error => console.log(error));
             let availResponse = response.data;
-            availResponse.date = new Date(availResponse.date);
+            availResponse.date = "" + availResponse.date + "T00:00-0800"
+            availResponse.date = new Date(availResponse.date)
             setAvailability((prev) => ({...prev, [availResponse.id]: availResponse}))
         } 
     } 
@@ -106,42 +104,8 @@ function AvailabilityContainer(props) {
             setAvailability(newAvailability);
         } 
     } 
-
-    /*
-    /api/v1/update/availability/start-time
-
-    params: id, newStartTime
-    */
-    const updateStartTime = async (e) => {
-        
-    }
+ 
     
-
-    /*
-    /api/v1/update/availability/end-time
-
-    params: id, newEndTime
-    */
-    const updateEndTime = async (e) => {
-        
-    }
-
-    /*
-    /api/v1/delete/availability
-
-    params: id
-    */
-    const deletAvailability = async(e) => {
-
-    }
-
-    /* /api/v1/get/available-matches
-
-    params: userId
-    */
-    const getAvailableMatches = async (e) => {
-        
-    }
 
     return (
         <div>

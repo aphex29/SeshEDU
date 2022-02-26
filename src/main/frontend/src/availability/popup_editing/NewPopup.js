@@ -16,50 +16,14 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 
 function NewPopup(props) {
-  const getUserId = (availabilityMap) => {
-    for (let key in availabilityMap) {
-      return availabilityMap[key].userId;
-    }
-  }
 
-  const [userId, setUserId] = useState(getUserId(props.availability))
-
-  // parse time from float to Date object
-  const convertFloatsToDateTime = (availability) => {
-    let parsed = availability;
-    for (let key in availability) {
-      if (key === 'startTime' || key === 'endTime')  {
-        let time = new Date(availability.date);
-        time.setHours(parseInt(availability[key]))
-        time.setMinutes((availability[key] - parseInt(availability[key])) * 60);
-        parsed = {...parsed, [key]:time};
-      }
-    }
-    return parsed;
-  }
-
-  // parse time from Date object to float
-  const convertDateTimeToFloats = (availability) => {
-    let parsed = availability;
-    for (let key in availability) {
-      if (key === 'startTime' || key === 'endTime')  {
-        let hours = availability[key].getHours();
-        let minutes = availability[key].getMinutes() / 60;
-        let time = hours + minutes;
-        parsed = {...parsed, [key]:time};
-      }
-    }
-    return parsed;
-    }
     // A single Availability
     const [currAvailability, setCurrAvailability] = useState({
-        userId: userId,
         date: new Date(),
         startTime: new Date(),
         endTime: new Date()
     });
     const [newAvailabilty, setNewAvailability] = useState({
-        userId: userId,
         date: new Date(),
         startTime: new Date(),
         endTime: new Date()
