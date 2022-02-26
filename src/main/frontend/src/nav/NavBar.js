@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
 
 function NavBar(props) {
-    const { username } = props;
+    const { username, setIsLoggedIn, isLoggedIn } = props;
 
     return (
         <nav>
@@ -60,7 +60,18 @@ function NavBar(props) {
                         >Team
                     </NavLink>
                 </li>
-                {!props.isLoggedIn && <li>
+                {!isLoggedIn && <li><HashLink smooth to="/#formAlign"
+                        style={{
+                            color:"#FFFFFF", 
+                            textDecoration: "none"
+                        }}
+                        activestyle={{
+                            color:"#FFFFFF", 
+                            textDecoration: "none"
+                        }}>
+                        Create Account
+                    </HashLink></li>}
+                {!isLoggedIn && <li>
                     <HashLink smooth to="/#formAlign"
                         style={{
                             color:"#FFFFFF", 
@@ -72,18 +83,7 @@ function NavBar(props) {
                         }}>
                         Login
                     </HashLink></li>}
-                {!props.isLoggedIn && <li><HashLink smooth to="/#formAlign"
-                        style={{
-                            color:"#FFFFFF", 
-                            textDecoration: "none"
-                        }}
-                        activestyle={{
-                            color:"#FFFFFF", 
-                            textDecoration: "none"
-                        }}>
-                        Create Account
-                    </HashLink></li>}
-                {props.isLoggedIn && <li>
+                {isLoggedIn && <li>
                     <NavLink to={"/profile/" + username}
                         style={{
                             color:"#FFFFFF", 
@@ -92,11 +92,22 @@ function NavBar(props) {
                         activestyle={{
                             color:"#FFFFFF", 
                             textDecoration: "none"
-                        }}
-                        >Profile
+                        }}>
+                        Profile
                     </NavLink> 
                     </li>}
-                {props.isLoggedIn && <li>Sign Out</li>}
+                {isLoggedIn && <li><NavLink to={"/"} 
+                        onClick={() => setIsLoggedIn(false)}
+                        style={{
+                            color:"#FFFFFF", 
+                            textDecoration: "none"
+                        }}
+                        activestyle={{
+                            color:"#FFFFFF", 
+                            textDecoration: "none"
+                        }}>
+                        Log Out
+                    </NavLink></li>}
             </ul>
         </nav>
     );

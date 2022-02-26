@@ -11,8 +11,10 @@ function HobbiesContainer(props) {
       const getHobbies = async () => {
         let response = await axios.post('http://localhost:8080/api/v1/get/hobby/all', {userId: userId})
           .catch(error => console.log(error));
-        let allHobbies = convertArrayToObject(response.data, 'id')
-        setHobbies(allHobbies || {});
+        if (response != null) {
+          let allHobbies = convertArrayToObject(response.data, 'id')
+          setHobbies(allHobbies || {});
+        }
       }
       
       getHobbies();

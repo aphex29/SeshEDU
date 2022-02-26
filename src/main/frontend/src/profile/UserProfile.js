@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './UserProfile.css';
 import ProfileHeaderContainer from '../header/Container';
 import EducationContainer from '../education/Container';
@@ -8,25 +8,29 @@ import AvailabilityContainer from '../availability/Container';
 import SessionsContainer from '../sessions/Container';
 import Button from '../button/Button';
 
-function UserProfile() { 
+function UserProfile(props) { 
+    const { userInfo } = props;
+
+
     return(
+        
         <div id="main-box">
-            <ProfileHeaderContainer />
+            <ProfileHeaderContainer userInfo={userInfo} />
 
             <div className="box">
-                <EducationContainer userId={1} />
+                <EducationContainer userId={userInfo.id} />
             </div>
             
             <div className="box">
-                <SkillsContainer userId={1} />
+                <SkillsContainer userId={userInfo.id}  />
 
                 <hr />
 
-                <HobbiesContainer userId={1} />
+                <HobbiesContainer userId={userInfo.id}  />
             </div>
             
             <div className="box">
-                <AvailabilityContainer userId={1} />
+                <AvailabilityContainer userId={userInfo.id}  />
             </div>
 
             <div id="sessionButtons">
@@ -38,7 +42,7 @@ function UserProfile() {
             </div>
 
             <div className="box" >
-                <SessionsContainer userId={1} city="Chicago" />
+                <SessionsContainer userId={userInfo.id} />
             </div>
         </div>
     );

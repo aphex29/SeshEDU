@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
 
 function Footer(props) {
+    const { isLoggedIn, setIsLoggedIn } = props;
     return (
         <footer>
             <h2>SeshEDU</h2>
@@ -46,7 +47,7 @@ function Footer(props) {
                         >Team
                     </NavLink>
                 </li>
-                {!props.isLoggedIn && <li>
+                {!isLoggedIn && <li>
                     <HashLink smooth to="/#formAlign"
                         style={{
                             color:"#000000", 
@@ -58,7 +59,7 @@ function Footer(props) {
                         }}>
                         Login
                     </HashLink></li>}
-                {!props.isLoggedIn && <li><HashLink smooth to="/#formAlign"
+                {!isLoggedIn && <li><HashLink smooth to="/#formAlign"
                         style={{
                             color:"#000000", 
                             textDecoration: "none"
@@ -69,6 +70,18 @@ function Footer(props) {
                         }}>
                         Create Account
                     </HashLink></li>}
+                {isLoggedIn && <li><NavLink to={"/"} 
+                        onClick={() => setIsLoggedIn(false)}
+                        style={{
+                            color:"#000000", 
+                            textDecoration: "none"
+                        }}
+                        activestyle={{
+                            color:"#000000", 
+                            textDecoration: "none"
+                        }}>
+                        Log Out
+                    </NavLink></li>}
             </ul>
 
             <p id="copy">&copy; 2022 SeshEDU</p>

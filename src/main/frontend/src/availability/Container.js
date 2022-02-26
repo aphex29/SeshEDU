@@ -12,16 +12,18 @@ function AvailabilityContainer(props) {
         const getAvailability = async () => {
             let response = await axios.post('http://localhost:8080/api/v1/get/availability/all', {userId: userId})
                 .catch(error => console.log(error));
-            let allAvailability = convertArrayToObject(response.data, 'id');
-            for (let key in allAvailability) {
-                allAvailability[key].date = "" + allAvailability[key].date + "T00:00-0800";
-                allAvailability[key].date = new Date(allAvailability[key].date)
-            }
-            setAvailability(allAvailability || {});
+            if (response != null) {
+                let allAvailability = convertArrayToObject(response.data, 'id');
+                for (let key in allAvailability) {
+                    allAvailability[key].date = "" + allAvailability[key].date + "T00:00-0800";
+                    allAvailability[key].date = new Date(allAvailability[key].date)
+                }
+                setAvailability(allAvailability || {});
+            }  
         }
 
         getAvailability();
-    }, []);
+    }, [userId]);
     
     // parse time from Date object to float for sending to backend
     const convertTimeToFloats = (availability) => {

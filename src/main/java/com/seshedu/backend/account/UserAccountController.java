@@ -21,11 +21,10 @@ public class UserAccountController {
 
     @PostMapping("/api/v1/create/account")
     public UserAccount createAccount(@RequestBody Map<String, String> json) {
-        Long userId = Long.parseLong(json.get("userId"));
         String email = json.get("email");
         String username = json.get("username");
         String password = json.get("password");
-        return service.createAccount(userId,email,username,password);
+        return service.createAccount(email,username,password);
     }
 
     @PostMapping("/api/v1/get/account/verify")

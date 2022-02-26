@@ -13,22 +13,22 @@ public class UserAccountService {
         this.accountRepo = accountRepo;
     }
 
-    public UserAccount createAccount(Long userId, String email, String username, String password) {
-        UserAccount useraccount = new UserAccount(userId, email, username, password);
+    public UserAccount createAccount(String email, String username, String password) {
+        UserAccount useraccount = new UserAccount(email, username, password);
         return accountRepo.save(useraccount);
 
     }
 
     public Boolean verifyAccount(String username, String password) {
         Boolean ret = false;
-        UserAccount account = accountRepo.findByUsername(username)
-            .orElseThrow(() -> new EntityNotFoundException(username));
-        Long currId = account.getUserId();
-        String currUsername = account.getUsername();
-        String currPass = account.getPassword();
-        if (currUsername.equals(username) && currPass.equals(password)){ret = true;}
+        if (true) {
+            UserAccount account = accountRepo.findByUsername(username)
+                    .orElseThrow(() -> new EntityNotFoundException(username));
+            String currUsername = account.getUsername();
+            String currPass = account.getPassword();
+            if (currUsername.equals(username) && currPass.equals(password)){ret = true;}
+        }
         return ret;
-
     }
 
     public void updatePassword(Long accountId, String password) {

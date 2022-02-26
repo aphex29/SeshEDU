@@ -12,8 +12,10 @@ function SkillsContainer(props) {
       const getSkills = async () => {
         let response = await axios.post('http://localhost:8080/api/v1/get/skill/all', {userId: userId})
             .catch(error => console.log(error));
-        let allSkills = convertArrayToObject(response.data, 'id');
-        setSkills(allSkills || {});
+        if (response != null) {
+          let allSkills = convertArrayToObject(response.data, 'id');
+          setSkills(allSkills || {});
+        } 
       }
 
         getSkills();

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import logo from './logo.svg';
 import  {
   BrowserRouter as Router,
@@ -13,24 +13,27 @@ import Footer from './footer/Footer';
 
 function App() {
   // 
-  const [username, setUsername] = useState('notmaxholt');
-  const [userInfo, setUserInfo] = useState({});
-  const [isLoggedIn, setIsLoggedIn] = useState(true)
+  const [userInfo, setUserInfo] = useState({
+    name: "",
+    username: ""
+  });
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+
 
   return (
     <div className="App">
       <Router>
             
-          <NavBar isLoggedIn={isLoggedIn} username={username}/>
+          <NavBar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} username={userInfo.username}/>
          
 
           <Routes>
-            <Route exact path="/" element={<Home setIsLoggedIn={setIsLoggedIn} setUserInfo={setUserInfo} />} />
+            <Route exact path="/" element={<Home isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} setUserInfo={setUserInfo} />} />
             <Route exact path="/team" element={<Team />} />
-            <Route exact path={"/profile/" + username} element={<UserProfile />} />
+            <Route exact path={"/profile/" + userInfo.username} element={<UserProfile userInfo={userInfo}  />} />
           </Routes>
 
-          <Footer isLoggedIn={false} username={username} />
+          <Footer isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} username={userInfo.username} />
         </Router>
     </div>
   );

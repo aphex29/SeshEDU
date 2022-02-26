@@ -8,7 +8,7 @@ import go from '../goStep.png';
 import greenDesk from '../deskgreen.png';
 
 function Home(props) {
-    const { setIsLoggedIn, setUserInfo } = props;
+    const { isLoggedIn, setIsLoggedIn, setUserInfo } = props;
     
     return(
         <main>
@@ -64,15 +64,16 @@ function Home(props) {
                         GreenEDU connects to find those in your community meant for you.</p>
                 </div>
              </div>
+             {!isLoggedIn &&
                 <div id = "formAlign">
                     <div className='accountBox'>
-                    <NewAccountFormContainer setIsLoggedIn={setIsLoggedIn} setUserInfo={setUserInfo} />
+                        <NewAccountFormContainer setIsLoggedIn={setIsLoggedIn} setUserInfo={setUserInfo} />
                     </div>
 
                     <div className='accountBox'>
-                    <LoginFormContainer setIsLoggedIn={setIsLoggedIn} setUserInfo={setUserInfo} />
+                        <LoginFormContainer setIsLoggedIn={setIsLoggedIn} setUserInfo={setUserInfo} />
                     </div>
-                </div>
+                </div>}
         </main>
     );
 }

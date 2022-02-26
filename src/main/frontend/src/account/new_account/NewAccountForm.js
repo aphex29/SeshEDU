@@ -10,7 +10,7 @@ function NewAccountForm(props) {
             id="txtName"
             placeholder="Name"
             name="name"
-            value={props.firstName}
+            value={props.name}
             onChange={props.handleChange}
             required />
             <br />
@@ -38,10 +38,10 @@ function NewAccountForm(props) {
     
             <input 
             type="password"
-            id="txtPassword1"
+            id="txtPassword"
             placeholder="Password"
-            name="password1"
-            value={props.password1}
+            name="password"
+            value={props.password}
             onChange={props.handleChange}
             required />
             <br />
@@ -56,7 +56,7 @@ function NewAccountForm(props) {
             required />
             <br />
     
-            <Button type="button" value="Create Account" />
+            <Button type="submit" value="Create Account" />
     
             </form>
         );

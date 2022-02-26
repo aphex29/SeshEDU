@@ -33,17 +33,17 @@ public class BackendApplication {
 	@Bean
 	CommandLineRunner commandLineRunner(PersonRepository pRepo, EducationRepository educationRepo, HobbyRepository hobbyRepo) {
 		return args -> {
-			PersonService ps = new PersonService(pRepo);
-			ps.createPerson("pmarkows","Patrick Markowski", "pm@depaul.edu", "1234", "Chicago", "Illinois");
-			ps.createPerson("abc","John Smith", "jsmith@depaul.edu", "4521", "Chicago", "Illinois");
-			ps.createPerson("def","Johnny Seed", "jseed@depaul.edu", "2121", "Chicago", "Illinois");
-			ps.createPerson("bvn","Jane Doe", "jdoe@depaul.edu", "f6745", "Naperville", "Illinois");
-			System.out.println(ps.getNearbyPeople("pmarkows", "Chicago"));
-			ps.updateName("pmarkows", "Thomas Jefferson");
-			ps.updateCity("pmarkows", "Naperville");
-			ps.updateUsername("pmarkows", "tjefferson");
-			ps.updateEmail("tjefferson", "tjefferson@depaul.edu");
-			System.out.println(ps.getNearbyPeople("tjefferson", "Naperville"));
+//			PersonService ps = new PersonService(pRepo);
+//			ps.createPerson(10L, "pmarkows","Patrick Markowski", "pm@depaul.edu", "Chicago", "Illinois");
+//			ps.createPerson(11L, "abc","John Smith", "jsmith@depaul.edu", "Chicago", "Illinois");
+//			ps.createPerson(12L, "def","Johnny Seed", "jseed@depaul.edu", "Chicago", "Illinois");
+//			ps.createPerson(13L, "bvn","Jane Doe", "jdoe@depaul.edu","Naperville", "Illinois");
+//			System.out.println(ps.getNearbyPeople("pmarkows", "Chicago"));
+//			ps.updateName("pmarkows", "Thomas Jefferson");
+//			ps.updateCity("pmarkows", "Naperville");
+//			ps.updateUsername("pmarkows", "tjefferson");
+//			ps.updateEmail("tjefferson", "tjefferson@depaul.edu");
+//			System.out.println(ps.getNearbyPeople("tjefferson", "Naperville"));
 
 			hobbyRepo.save(new Hobby(1L, "Hiking"));
 			hobbyRepo.save(new Hobby(1L, "Running"));

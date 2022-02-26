@@ -20,7 +20,7 @@ function Education(props) {
 
 
     const getEducationHTML = (educationMap) => {
-        if (educationMap == {}) return <div></div>;
+        if (educationMap === {}) return <div></div>;
         let educationInfo = []
         for (let key in educationMap) {
             let edu = educationMap[key];

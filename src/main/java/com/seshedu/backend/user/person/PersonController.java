@@ -23,13 +23,11 @@ public class PersonController {
 
     @PostMapping("/api/v1/create/person")
     public Person createPerson(@RequestBody Map<String, String> json) {
+        Long accountId = Long.parseLong(json.get("accountId"));
         String username = json.get("username");
         String name = json.get("name");
         String email = json.get("email");
-        String password = json.get("password");
-        String city = json.get("city");
-        String state = json.get("state");
-        return service.createPerson(username,name,email,password,city,state);
+        return service.createPerson(accountId, username,name,email,null,null);
     }
 
     @PostMapping("/api/v1/get/person")

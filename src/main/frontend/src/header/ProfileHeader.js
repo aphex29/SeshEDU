@@ -4,7 +4,7 @@ import backgroundPic from '../images/desk1.png';
 import profilePic from '../images/profile-pic-max.png';
 
 function ProfileHeader(props) {
-    const { user, setUser } = props;
+    const { userInfo } = props;
 
     return(
         <div id="profileDetails">
@@ -15,9 +15,9 @@ function ProfileHeader(props) {
 
             <img id="profilePic" src={profilePic} alt="user profile image" />
 
-            <h1 id="name">{user.name}</h1>
+            <h1 id="name">{userInfo.name}</h1>
 
-            <p className="username">@{user.username}</p>
+            <p className="username">@{userInfo.username}</p>
         </div> 
     );
 }

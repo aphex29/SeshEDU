@@ -12,8 +12,10 @@ function EducationContainer(props) {
         const getEducation = async () => {
             let response = await axios.post('http://localhost:8080/api/v1/get/education', {userId: userId})
                 .catch(error => console.log(error));
-            let allEducation = convertArrayToObject(response.data, 'id');
-            setEducation(allEducation || {});
+            if (response != null) {
+                let allEducation = convertArrayToObject(response.data, 'id');
+                setEducation(allEducation || {});
+            } 
         }
         
         getEducation()

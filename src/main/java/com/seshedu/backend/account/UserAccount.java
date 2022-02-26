@@ -9,29 +9,23 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity(name = "UserAccount")
-@Table(name = "useraccount")
+@Table(name = "user_account")
 public class UserAccount {
     @Id
     @SequenceGenerator(
-        name = "userAccount_sequence",
-        sequenceName = "userAccount_sequence",
+        name = "user_account_sequence",
+        sequenceName = "user_account_sequence",
         allocationSize = 1
     )
     @GeneratedValue(
         strategy = GenerationType.SEQUENCE,
-        generator = "userAccount_sequence"
+        generator = "user_account_sequence"
     )
     @Column(
         name = "id",
         updatable = false
     )
     private Long id;
-
-    @Column(
-        name = "user_id",
-        nullable = false
-    )
-    private Long userId;
 
     @Column(
         name = "email",
@@ -52,8 +46,7 @@ public class UserAccount {
     private String password;
 
     public UserAccount(){}
-    public UserAccount(Long userId, String email, String username, String password){
-        this.userId = userId;
+    public UserAccount(String email, String username, String password){
         this.email = email;
         this.username = username;
         this.password = password;
@@ -62,9 +55,7 @@ public class UserAccount {
     public Long getId() {
         return id;
     }
-    public Long getUserId() {
-        return userId;
-    }
+
     public String getEmail() {
         return email;
     }
@@ -79,7 +70,7 @@ public class UserAccount {
 
     @Override
     public String toString() {
-        return "UserAccount[id=" + id + ", userId=" + userId + ", email=" + email
+        return "UserAccount[id=" + id + ", email=" + email
             + ", username=" + username + ", password=" + password + "]";
     }
 }
