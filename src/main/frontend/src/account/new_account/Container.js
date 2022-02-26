@@ -14,7 +14,6 @@ function NewAccountFormContainer(props) {
         city: "",
         state: "",
         password: "",
-        password2: ""
     })
     
     const [accountId, setAccountId] = useState(null)
@@ -41,7 +40,11 @@ function NewAccountFormContainer(props) {
 
     const handleNewAccountChange = ({ target }) => {
         const { name, value } = target;
-        setNewAccount((prev) => ({...prev, [name]: value}));
+        if (name === "username" || name === "email") {
+            setNewAccount((prev) => ({...prev, [name]: value.replace(/\s/g, '')}));
+        } else {
+            setNewAccount((prev) => ({...prev, [name]: value}));
+        }
     }
 
     
@@ -66,8 +69,7 @@ function NewAccountFormContainer(props) {
                 name={newAccount.name}
                 username={newAccount.username}
                 email={newAccount.email}
-                password={newAccount.password}
-                password2={newAccount.password2}/>
+                password={newAccount.password}/>
 
             {accountId && <Navigate to={"/profile/" + newAccount.username} />}
 

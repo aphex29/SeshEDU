@@ -31,7 +31,11 @@ function LoginFormContainer(props) {
 
     const handleLoginChange = ({ target }) => {
         const { name, value } = target;
-        setLogin((prev) => ({...prev, [name]: value}));
+        if (name === "username") {
+            setLogin((prev) => ({...prev, [name]: value.replace(/\s/g, '')}));
+        } else {
+            setLogin((prev) => ({...prev, [name]: value}));
+        }
     }
 
     const [isInvalid, setIsInvalid] = useState(false)

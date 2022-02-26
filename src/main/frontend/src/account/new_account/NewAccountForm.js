@@ -46,16 +46,6 @@ function NewAccountForm(props) {
             required />
             <br />
     
-            <input 
-            type="password"
-            id="txtPassword2"
-            placeholder="Re-type Password"
-            name="password2"
-            value={props.password2}
-            onChange={props.handleChange}
-            required />
-            <br />
-    
             <Button type="submit" value="Create Account" />
     
             </form>

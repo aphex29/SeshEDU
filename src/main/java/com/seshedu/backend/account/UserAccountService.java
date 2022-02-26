@@ -21,7 +21,7 @@ public class UserAccountService {
 
     public Boolean verifyAccount(String username, String password) {
         Boolean ret = false;
-        if (true) {
+        if (accountRepo.findExistByUsername(username)) {
             UserAccount account = accountRepo.findByUsername(username)
                     .orElseThrow(() -> new EntityNotFoundException(username));
             String currUsername = account.getUsername();
