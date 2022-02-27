@@ -10,6 +10,7 @@ import com.seshedu.backend.user.person.PersonService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import com.seshedu.backend.account.UserAccount;
 import com.seshedu.backend.account.UserAccountRepository;
@@ -20,7 +21,7 @@ import com.seshedu.backend.user.person.PersonRepository;
 
 import java.util.List;
 
-@SpringBootApplication
+@SpringBootApplication(exclude = { SecurityAutoConfiguration.class })
 public class BackendApplication {
 
 	/**

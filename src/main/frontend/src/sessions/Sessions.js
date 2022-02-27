@@ -178,7 +178,7 @@ function Sessions(props) {
             <hr />
 
             <h2>Matches</h2>
-            
+
             <form id="cityForm">
                 <input 
                     type="text"
@@ -199,11 +199,8 @@ function Sessions(props) {
                     required /> 
             </form>
             
-            {!isShowingMatches && <Button handleClick={handleClick}  value="Find Available Matches" />}
-            {isShowingMatches && <Button handleClick={handleClick}  value="Hide Available Matches" />}
-            
-
-            
+            {!isShowingMatches && <Button type="button" handleClick={handleClick}  value="Find Available Matches" />}
+            {isShowingMatches && <Button type="button" handleClick={handleClick}  value="Hide Available Matches" />}
 
             {isShowingMatches && showMatches()}
         </div>

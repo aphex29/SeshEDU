@@ -2,19 +2,24 @@ package com.seshedu.backend.account;
 
 import javax.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserAccountService {
     UserAccountRepository accountRepo;
+    PasswordEncoder encoder;
 
     @Autowired
     public UserAccountService(UserAccountRepository accountRepo) {
         this.accountRepo = accountRepo;
+        this.encoder = new Pbkdf2PasswordEncoder();
     }
 
     public UserAccount createAccount(String email, String username, String password) {
-        UserAccount useraccount = new UserAccount(email, username, password);
+        String passwordHash = encoder.encode(password);
+        UserAccount useraccount = new UserAccount(email, username, passwordHash);
         return accountRepo.save(useraccount);
 
     }
@@ -26,7 +31,7 @@ public class UserAccountService {
                     .orElseThrow(() -> new EntityNotFoundException(username));
             String currUsername = account.getUsername();
             String currPass = account.getPassword();
-            if (currUsername.equals(username) && currPass.equals(password)){ret = true;}
+            if (currUsername.equals(username) && encoder.matches(password, currPass)){ret = true;}
         }
         return ret;
     }
@@ -34,7 +39,8 @@ public class UserAccountService {
     public void updatePassword(Long accountId, String password) {
         UserAccount newUserPass = accountRepo.findById(accountId)
             .orElseThrow(() -> new EntityNotFoundException("" + accountId));
-        newUserPass.setPassword(password);
+        String newPasswordHash = encoder.encode(password);
+        newUserPass.setPassword(newPasswordHash);
         accountRepo.save(newUserPass);
     }
 
@@ -42,8 +48,6 @@ public class UserAccountService {
         UserAccount delUserAccount = accountRepo.findById(accountId)
             .orElseThrow(() -> new EntityNotFoundException("" + accountId));
         accountRepo.delete(delUserAccount);
-
-
     }
 
 }
