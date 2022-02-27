@@ -1,12 +1,5 @@
 package com.seshedu.backend.user.person;
 
-import com.seshedu.backend.account.UserAccount;
-import com.seshedu.backend.hobby.Hobby;
-import com.seshedu.backend.hobby.HobbyRepository;
-import com.seshedu.backend.skill.Skill;
-import com.seshedu.backend.skill.SkillRepository;
-import com.seshedu.backend.user.User;
-import java.util.function.Predicate;
 import javax.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,8 +15,8 @@ public class PersonService {
         this.personRepo = personRepo;
     }
 
-    public Person createPerson(String username, String name, String email, String password, String city, String state) {
-        Person person = new Person(username, name, email, password, city, state);
+    public Person createPerson(Long accountId, String username, String name, String email, String city, String state) {
+        Person person = new Person(accountId, username, name, email, city, state);
         return personRepo.save(person);
     }
 

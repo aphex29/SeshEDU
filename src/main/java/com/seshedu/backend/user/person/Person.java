@@ -31,6 +31,13 @@ public class Person implements User {
     private Long id;
 
     @Column(
+            name = "account_id",
+            nullable = false,
+            updatable = false
+    )
+    private Long accountId;
+
+    @Column(
         name = "username",
         nullable = false
     )
@@ -49,34 +56,27 @@ public class Person implements User {
     private String email;
 
     @Column(
-        name = "password",
-        nullable = false
-    )
-    private String password;
-
-    @Column(
-        name = "city",
-        nullable = false
+        name = "city"
     )
     private String city;
 
     @Column(
-        name = "state",
-        nullable = false
+        name = "state"
     )
     private String state;
 
     public Person(){}
-    public Person(String username, String name, String email, String password, String city, String state){
+    public Person(Long accountId, String username, String name, String email, String city, String state){
+        this.accountId = accountId;
         this.username = username;
         this.name = name;
         this.email = email;
-        this.password = password;
         this.city = city;
         this.state = state;
     }
 
     public Long getId() { return id; }
+    public Long getAccountId() { return accountId; }
     public String getUsername() { return username; }
     public String getName() { return name; }
     public String getEmail() { return email; }
@@ -92,7 +92,6 @@ public class Person implements User {
     @Override
     public String toString() {
         return "Person[id=" + id + ", username=" + username + ", email=" + email
-            + ", password=" + password + ", city=" + city
-            + ", state=" + state+ "]";
+            + ", city=" + city + ", state=" + state+ "]";
     }
 }

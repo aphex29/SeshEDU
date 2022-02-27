@@ -14,16 +14,7 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 
 function NewPopup(props) {
-  
-  const getUserId = (educationMap) => {
-    for (let key in educationMap) {
-      return educationMap[key].userId;
-    }
-  }
-
-  const [userId, setUserId] = useState(getUserId(props.education))
   const [currEducation, setCurrEducation] = useState({
-    userId: userId,
     school: '',
     degreeType: '',
     major: '',
@@ -32,7 +23,6 @@ function NewPopup(props) {
   })
 
   const [newEducation, setNewEducation] = useState({
-    userId: userId,
     school: '',
     degreeType: '',
     major: '',
@@ -92,6 +82,7 @@ function NewPopup(props) {
                   autoComplete="off"
                 >
                     <TextField 
+                        required
                         className="standard-basic" 
                         label="School"
                         name="school" 
@@ -103,6 +94,7 @@ function NewPopup(props) {
                   </Box>
 
                     <TextField 
+                        required
                         className="standard-basic" 
                         label="Degree type"
                         name="degreeType" 
@@ -113,6 +105,7 @@ function NewPopup(props) {
                         />
 
                     <TextField 
+                        required
                         className="standard-basic" 
                         label="Major"
                         name="major" 
@@ -124,6 +117,7 @@ function NewPopup(props) {
                     
 
                     <TextField 
+                        required
                         className="standard-basic" 
                         label="Start Year"
                         name="startYear" 
@@ -134,6 +128,7 @@ function NewPopup(props) {
                         />
 
                     <TextField 
+                        required
                         className="standard-basic" 
                         label="End Year"
                         name="endYear" 
@@ -147,13 +142,12 @@ function NewPopup(props) {
           </DialogContent>
         
           <DialogActions>
-          
-            <Button handleClick={handleSubmit}  value="Submit" />
-            
+            <Button type="button" handleClick={handleClose} value="Cancel" />
+            <Button type="submit" handleClick={handleSubmit}  value="Submit" />
           </DialogActions>
         
         </form >
-        <Button handleClick={handleClose} value="Cancel" />
+        
       </Dialog>
     </div>
   );

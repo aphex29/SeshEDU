@@ -32,7 +32,7 @@ public class AvailabilityController {
         return service.createAvailability(userId,date,startTime,endTime);
     }
 
-    @PostMapping("/api/v1/get/availability")
+    @PostMapping("/api/v1/get/availability/all")
     public List<Availability> getAvailability(@RequestBody Map<String, String> json) {
         Long userId = Long.parseLong(json.get("userId"));
         return service.getAvailability(userId);

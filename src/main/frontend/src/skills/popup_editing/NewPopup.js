@@ -11,21 +11,11 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 function EditPopup(props) {
 
-    const getUserId = (skillsMap) => {
-      for (let key in skillsMap) {
-        return skillsMap[key].userId;
-      }
-    }
-
-    const [userId, setUserId] = useState(getUserId(props.skills))
-
     const [currSkill, setCurrSkill] = useState({
-      userId: userId,
       skill: ''
     })
     
     const [newSkill, setNewSkill] = useState({
-      userId: userId,
       skill: ''
     })
 
@@ -81,9 +71,7 @@ function EditPopup(props) {
             
             <DialogActions>
               <Button type="button" handleClick={handleClose} value="Cancel" />
-              
               <Button type="submit" handleClick={handleSubmit} value="Save" />
-              
             </DialogActions>
           </form>
           

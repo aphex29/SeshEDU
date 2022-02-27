@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.util.Map;
 
 @RestController
@@ -21,19 +23,17 @@ public class UserAccountController {
 
     @PostMapping("/api/v1/create/account")
     public UserAccount createAccount(@RequestBody Map<String, String> json) {
-        Long userId = Long.parseLong(json.get("userId"));
         String email = json.get("email");
         String username = json.get("username");
         String password = json.get("password");
-        return service.createAccount(userId,email,username,password);
+        return service.createAccount(email,username,password);
     }
 
     @PostMapping("/api/v1/get/account/verify")
     public Boolean verifyAccount(@RequestBody Map<String, String> json) {
-        Long userId = Long.parseLong(json.get("userId"));
-        String email = json.get("email");
+        String username = json.get("username");
         String password = json.get("password");
-        return service.verifyAccount(userId,email,password);
+        return service.verifyAccount(username, password);
     }
 
     @PostMapping("/api/v1/update/account/password")

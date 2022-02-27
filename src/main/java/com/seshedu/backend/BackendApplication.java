@@ -10,6 +10,7 @@ import com.seshedu.backend.user.person.PersonService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import com.seshedu.backend.account.UserAccount;
 import com.seshedu.backend.account.UserAccountRepository;
@@ -20,7 +21,7 @@ import com.seshedu.backend.user.person.PersonRepository;
 
 import java.util.List;
 
-@SpringBootApplication
+@SpringBootApplication(exclude = { SecurityAutoConfiguration.class })
 public class BackendApplication {
 
 	/**
@@ -33,17 +34,17 @@ public class BackendApplication {
 	@Bean
 	CommandLineRunner commandLineRunner(PersonRepository pRepo, EducationRepository educationRepo, HobbyRepository hobbyRepo) {
 		return args -> {
-			PersonService ps = new PersonService(pRepo);
-			ps.createPerson("pmarkows","Patrick Markowski", "pm@depaul.edu", "1234", "Chicago", "Illinois");
-			ps.createPerson("abc","John Smith", "jsmith@depaul.edu", "4521", "Chicago", "Illinois");
-			ps.createPerson("def","Johnny Seed", "jseed@depaul.edu", "2121", "Chicago", "Illinois");
-			ps.createPerson("bvn","Jane Doe", "jdoe@depaul.edu", "f6745", "Naperville", "Illinois");
-			System.out.println(ps.getNearbyPeople("pmarkows", "Chicago"));
-			ps.updateName("pmarkows", "Thomas Jefferson");
-			ps.updateCity("pmarkows", "Naperville");
-			ps.updateUsername("pmarkows", "tjefferson");
-			ps.updateEmail("tjefferson", "tjefferson@depaul.edu");
-			System.out.println(ps.getNearbyPeople("tjefferson", "Naperville"));
+//			PersonService ps = new PersonService(pRepo);
+//			ps.createPerson(10L, "pmarkows","Patrick Markowski", "pm@depaul.edu", "Chicago", "Illinois");
+//			ps.createPerson(11L, "abc","John Smith", "jsmith@depaul.edu", "Chicago", "Illinois");
+//			ps.createPerson(12L, "def","Johnny Seed", "jseed@depaul.edu", "Chicago", "Illinois");
+//			ps.createPerson(13L, "bvn","Jane Doe", "jdoe@depaul.edu","Naperville", "Illinois");
+//			System.out.println(ps.getNearbyPeople("pmarkows", "Chicago"));
+//			ps.updateName("pmarkows", "Thomas Jefferson");
+//			ps.updateCity("pmarkows", "Naperville");
+//			ps.updateUsername("pmarkows", "tjefferson");
+//			ps.updateEmail("tjefferson", "tjefferson@depaul.edu");
+//			System.out.println(ps.getNearbyPeople("tjefferson", "Naperville"));
 
 			hobbyRepo.save(new Hobby(1L, "Hiking"));
 			hobbyRepo.save(new Hobby(1L, "Running"));
@@ -82,8 +83,8 @@ public class BackendApplication {
 
 
 
-			Education ed1 = new Education(2L, "DePaul University", "Bachelor of Science", "Computer Science", 2018, 2022);
-			Education ed2 = new Education(2L, "DePaul University", "Master", "Computer Science", 2022, 2024);
+			Education ed1 = new Education(1L, "DePaul University", "Bachelor of Science", "Computer Science", 2018, 2022);
+			Education ed2 = new Education(1L, "DePaul University", "Master", "Computer Science", 2022, 2024);
 			educationRepo.save(ed1);
 			Education result = educationRepo.findById(1L).orElseThrow(() -> new EntityNotFoundException("" + 1L));
 			System.out.println(result);
@@ -91,7 +92,7 @@ public class BackendApplication {
 			result2.setSchool("Loyola University");
 			educationRepo.save(result2);
 			educationRepo.save(ed2);
-			List<Education> result3 = educationRepo.findByUserId(2L).orElseThrow(() -> new EntityNotFoundException("" + 2L));
+			List<Education> result3 = educationRepo.findByUserId(1L).orElseThrow(() -> new EntityNotFoundException("" + 1L));
 
 			System.out.println(result3);
 

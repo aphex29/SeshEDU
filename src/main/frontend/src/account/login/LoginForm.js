@@ -9,7 +9,8 @@ function LoginForm(props) {
             type="text"
             id="txtUserName"
             placeholder="Username"
-            value={props.name}
+            name="username"
+            value={props.username}
             onChange={props.handleChange}
             required />
             <br/>
@@ -24,7 +25,7 @@ function LoginForm(props) {
             required />
             <br />
        
-            <Button type="button" value = "Log In" />
+            <Button type="submit" value = "Log In" />
         </form>
     );
 }

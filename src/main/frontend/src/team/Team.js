@@ -20,43 +20,43 @@ function Team(props) {
         {
             name: 'Clara',
             img: Clara,
-            job: 'Documentation'
+            job: 'Documentation Manager'
         },
         
         {
             name: 'Nate',
             img: Nate,
-            job: 'Documentation'
+            job: 'Requirements Manager'
         },
         {
             name: 'Marek',
             img: Mark,
-            job: 'Design'
+            job: 'Unix Systems Manager'
         },
         {
             name: 'Raina',
             img: Raina,
-            job: 'Design'
+            job: 'Design Manager'
         },
         {
             name: 'Nick',
             img: Nick,
-            job: 'Media'
+            job: 'Presentation Manager'
         },
         {
             name: 'Chris',
             img: Chris,
-            job: 'Media'
+            job: 'Video/Media Manager'
         },
         {
             name: 'Patrick',
             img: Patrick,
-            job: 'Design'
+            job: 'Collaboration Software Manager'
         },
         {
             name: 'Tom',
             img: Tom,
-            job: 'Design Manager'
+            job: 'Implementation Manager'
         }
     ]
 

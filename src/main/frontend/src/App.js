@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import logo from './logo.svg';
 import  {
   BrowserRouter as Router,
@@ -13,20 +13,27 @@ import Footer from './footer/Footer';
 
 function App() {
   // 
+  const [userInfo, setUserInfo] = useState({
+    name: "",
+    username: ""
+  });
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+
   return (
     <div className="App">
       <Router>
             
-          <NavBar isLoggedIn={true}/>
+          <NavBar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} username={userInfo.username}/>
          
 
           <Routes>
-            <Route exact path="/" element={<Home />} />
+            <Route exact path="/" element={<Home isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} setUserInfo={setUserInfo} />} />
             <Route exact path="/team" element={<Team />} />
-            <Route exact path="/profile" element={<UserProfile />} />
+            <Route exact path={"/profile/" + userInfo.username} element={<UserProfile userInfo={userInfo}  />} />
           </Routes>
 
-          <Footer />
+          <Footer isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} username={userInfo.username} />
         </Router>
     </div>
   );

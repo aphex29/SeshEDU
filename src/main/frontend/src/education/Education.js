@@ -5,10 +5,10 @@ import depaulLogo from '../images/depaul-logo.png';
 import NewPopup from './popup_editing/NewPopup';
 import EditPopup from './popup_editing/EditPopup';
 import Button from '../button/Button';
+import LocationCityIcon from '@mui/icons-material/LocationCity';
 
 function Education(props) {
     const { education, createEducation, deleteEducation, updateEducation } = props;
-    
 
     const [isEditing, setIsEditing] = useState(false);
     const handleEditButtonChange = () => {
@@ -19,13 +19,21 @@ function Education(props) {
         }
     }
 
+    const checkSchool = (school) => {
+        return school.toLowerCase() == "depaul university";
+    }
+
+
     const getEducationHTML = (educationMap) => {
+        if (educationMap === {}) return <div></div>;
         let educationInfo = []
         for (let key in educationMap) {
             let edu = educationMap[key];
             educationInfo.push(
                 <div  key={edu.id} className="education-details">
-                    <img className="school-logo" src={depaulLogo} alt="DePaul University Logo" />
+                    {checkSchool(edu.school) && <img className="school-logo" src={depaulLogo} alt="DePaul University Logo" />}
+
+                    {!checkSchool(edu.school) && <LocationCityIcon style={{fontSize: "80px", color: "#1390d8"}} />}
                     <br />
                     <div><b>{edu.school}</b></div>
                     <br />
