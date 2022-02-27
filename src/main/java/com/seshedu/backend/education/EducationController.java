@@ -68,14 +68,14 @@ public class EducationController {
     @PostMapping("/api/v1/update/education/start-year")
     public Education updateStartYear(@RequestBody Map<String, String> json) {
         Long educationId = Long.parseLong(json.get("educationId"));
-        String newStartYear = json.get("newStartYear");
+        Integer newStartYear = Integer.parseInt(json.get("newStartYear"));
         return service.updateStartYear(educationId,newStartYear);
     }
 
     @PostMapping("/api/v1/update/education/end-year")
     public Education updateEndYear(@RequestBody Map<String, String> json) {
         Long educationId = Long.parseLong(json.get("educationId"));
-        String newEndYear = json.get("newEndYear");
+        Integer newEndYear = Integer.parseInt(json.get("newEndYear"));
         return service.updateEndYear(educationId,newEndYear);
     }
 
