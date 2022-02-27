@@ -36,7 +36,7 @@ function Sessions(props) {
                     <p><b>Molly Sol</b></p>
                     <div className="username">@heartandsol</div>
                     <br/>
-                    <div>{location.city}</div>
+                    <div>{location.city}, {location.state}</div>
                     <Button handleClick={alertBookedSession} value="Book Session" />
                     
                 </div>
@@ -46,7 +46,7 @@ function Sessions(props) {
                     <p><b>Christopher Jenkins</b></p>
                     <div className="username">@chrisjenk</div>
                     <br/>
-                    <div>{location.city}</div>
+                    <div>{location.city}, {location.state}</div>
                     <Button handleClick={alertBookedSession} value="Book Session" />
                 </div>
 
@@ -55,7 +55,7 @@ function Sessions(props) {
                     <p><b>Byron Edwards</b></p>
                     <div className="username">@byronnnnnn</div>
                     <br/>
-                    <div>{location.city}</div>
+                    <div>{location.city}, {location.state}</div>
                     <Button handleClick={alertBookedSession} value="Book Session" />
                 </div>
 
@@ -64,7 +64,7 @@ function Sessions(props) {
                     <p><b>Alex Rodriguez</b></p>
                     <div className="username">@rodeodrive22</div>
                     <br/>
-                    <div>{location.city}</div>
+                    <div>{location.city}, {location.state}</div>
                     <Button handleClick={alertBookedSession} value="Book Session" />
                 </div>
 
@@ -73,7 +73,7 @@ function Sessions(props) {
                     <p><b>Jessica Simmons</b></p>
                     <div className="username">@justjess</div>
                     <br/>
-                    <div>{location.city}</div>
+                    <div>{location.city}, {location.state}</div>
                     <Button handleClick={alertBookedSession} value="Book Session" />
                 </div>
 
@@ -82,7 +82,7 @@ function Sessions(props) {
                     <p><b>Larry Moore</b></p>
                     <div className="username">@morelarry_1</div>
                     <br/>
-                    <div>{location.city}</div>
+                    <div>{location.city}, {location.state}</div> 
                     <Button handleClick={alertBookedSession} value="Book Session" />
                 </div>
 
@@ -91,7 +91,7 @@ function Sessions(props) {
                     <p><b>Peter Welsh</b></p>
                     <div className="username">@peter_dabest</div>
                     <br/>
-                    <div>{location.city}</div>
+                    <div>{location.city}, {location.state}</div>
                     <Button handleClick={alertBookedSession} value="Book Session" />
                 </div>
 
@@ -101,7 +101,7 @@ function Sessions(props) {
                     <p><b>Katy Alexander</b></p>
                     <div className="username">@katygo</div>
                     <br/>
-                    <div>{location.city}</div>
+                    <div>{location.city}, {location.state}</div>
                     <Button handleClick={alertBookedSession} value="Book Session" />
                 </div>
 
@@ -110,7 +110,7 @@ function Sessions(props) {
                     <p><b>Mira Marshall</b></p>
                     <div className="username">@marshmarsh</div>
                     <br/>
-                    <div>{location.city}</div>
+                    <div>{location.city}, {location.state}</div>
                     <Button handleClick={alertBookedSession} value="Book Session" />
                 </div>
             
