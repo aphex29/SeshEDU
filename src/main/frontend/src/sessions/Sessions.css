@@ -1,0 +1,19 @@
+.nearby-people {
+    margin: 20px;
+    text-align: center;
+    display: inline-block;
+}
+
+
+#matchUsernames {
+    color: #1390d8;
+}
+
+.viewMatchTime {
+    color: lightgray;
+}
+
+#cityForm {
+    margin-left: 20px;
+    width: 50%;
+}

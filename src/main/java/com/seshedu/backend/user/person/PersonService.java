@@ -1,10 +1,6 @@
 package com.seshedu.backend.user.person;
 
-import com.seshedu.backend.hobby.Hobby;
-import com.seshedu.backend.hobby.HobbyRepository;
-import com.seshedu.backend.skill.Skill;
-import com.seshedu.backend.skill.SkillRepository;
-import com.seshedu.backend.user.User;
+import javax.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,39 +15,59 @@ public class PersonService {
         this.personRepo = personRepo;
     }
 
-    public User createPerson(String username, String name, String email, String password) {
-        return null;
+    public Person createPerson(Long accountId, String username, String name, String email, String city, String state) {
+        Person person = new Person(accountId, username, name, email, city, state);
+        return personRepo.save(person);
     }
 
-    public User getPerson(Long userId) {
-        return null;
+    public Person getPerson(String username) {
+        return personRepo.findByUsername(username)
+            .orElseThrow(() -> new EntityNotFoundException("" + username));
     }
 
-    public List<User> getNearbyPeople(Long userId, String city) {
-        return null;
+    public List<Person> getNearbyPeople(String username, String city) {
+        return personRepo.findByCityAndUsernameNot(city, username).orElseThrow(() -> new EntityNotFoundException("" + username));
     }
 
-    public User updateName(String userId, String newName) {
-        return null;
+    public Person updateName(String username, String newName) {
+        Person userUpdateName = personRepo.findByUsername(username)
+            .orElseThrow(() -> new EntityNotFoundException("" + username));
+        userUpdateName.setName(newName);
+        return personRepo.save(userUpdateName);
     }
 
-    public User updateUsername(String userId, String newUserName) {
-        return null;
+    public Person updateUsername(String username, String newUserName) {
+        Person userUpdateUsername = personRepo.findByUsername(username)
+            .orElseThrow(() -> new EntityNotFoundException("" + username));
+        userUpdateUsername.setUsername(newUserName);
+        return personRepo.save(userUpdateUsername);
     }
 
-    public User updateEmail(String userId, String newEmail) {
-        return null;
+    public Person updateEmail(String username, String newEmail) {
+
+        Person userUpdateEmail = personRepo.findByUsername(username)
+            .orElseThrow(() -> new EntityNotFoundException("" + username));
+        userUpdateEmail.setEmail(newEmail);
+        return personRepo.save(userUpdateEmail);
     }
 
-    public User updateCity(String userId, String newCity) {
-        return null;
+    public Person updateCity(String username, String newCity) {
+        Person userUpdateCity = personRepo.findByUsername(username)
+            .orElseThrow(() -> new EntityNotFoundException("" + username));
+        userUpdateCity.setCity(newCity);
+        return personRepo.save(userUpdateCity);
     }
 
-    public User updateState(String userId, String newState) {
-        return null;
+    public Person updateState(String username, String newState) {
+        Person userUpdateState = personRepo.findByUsername(username)
+            .orElseThrow(() -> new EntityNotFoundException("" + username));
+        userUpdateState.setState(newState);
+        return personRepo.save(userUpdateState);
     }
 
-    public void deletePerson(Long userId) {
-
+    public void deletePerson(Long id) {
+        Person delUserAccount = personRepo.findById(id)
+            .orElseThrow(() -> new EntityNotFoundException("" + id));
+        personRepo.delete(delUserAccount);
     }
 }
